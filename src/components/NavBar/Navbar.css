@@ -37,6 +37,25 @@
   color: black;
 }
 
+.search-input {
+  background-color: #E8E8E8;
+  padding: 0.35rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  outline: none;
+}
+
+.search-input:focus{
+  border: none;
+  outline: none
+  ;
+}
+
 @media (max-width: 650px) {
   .app__navbar {
     padding: 1rem;

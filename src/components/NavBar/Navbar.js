@@ -11,8 +11,6 @@ const Navbar = () => {
 
   const pathName = location.pathname;
 
-  console.log(pathName);
-
   const isAuthPage = pathName.includes("auth");
 
   return (
@@ -23,6 +21,7 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="app__navbar-links">
+        <input className="search-input" placeholder="Search" />
         {!isAuthPage && (
           <NavLink className="app__navbar-link" to={"/cart"}>
             <BsCart className="icon" size={20} />

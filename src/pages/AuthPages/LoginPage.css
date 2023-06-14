@@ -78,14 +78,15 @@
   padding-bottom: 0.75rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  background-color: #4f46e5;
+  /* background-color: #4f46e5; */
+  background-color: black;
   color: #ffffff;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 500;
   width: 100%;
   border-radius: 0.5rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .social {
@@ -100,6 +101,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
+
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .submit.social:hover {
@@ -126,6 +134,14 @@
 
 hr {
   margin: 1rem 0;
+}
+
+.error-msg {
+  border: 1px solid red;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-left: 10px solid red;
 }
 
 @media (max-width: 650px) {
