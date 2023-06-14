@@ -1,31 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/NavBar/Navbar";
 
-import { RxCross2 } from "react-icons/rx";
-
-const snackStyle = {
-  backgroundColor: "var(--background-color)",
-  color: "white",
-  textAlign: "center",
-  padding: "0.5rem",
-  verticalAlign: "center",
-};
+import CustomSnackbar from "../components/Snackbar/Snackbar";
 
 const RootLayout = () => {
   const location = useLocation();
 
   const pathName = location.pathname;
 
-  const isHome = pathName === "/";
+  const [isHome, setisHome] = useState(true);
+
+  const onSnackbarCloseHandler = ()=>{
+    setisHome(false);
+  };
 
   return (
     <div>
-      {isHome && (
-        <div style={snackStyle}>
-          50% off on your first order! Shop Now <RxCross2 size={20}/>
-        </div>
-      )}
+      {isHome && <CustomSnackbar onClose={onSnackbarCloseHandler} />}
       <Navbar />
       <main>
         <Outlet></Outlet>
