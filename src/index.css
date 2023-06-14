@@ -9,6 +9,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --background-color: #1d242d;
-  background-color: #e2e7e8;
+  /* background-color: #e2e7e8; */
+  background: white;
   text-decoration: none;
 }

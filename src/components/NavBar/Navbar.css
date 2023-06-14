@@ -1,6 +1,6 @@
 .app__navbar {
   width: 100%;
-  padding: 2rem 4rem;
+  padding: 0.25rem 4rem;
   /* position: fixed; */
 
   display: flex;
@@ -11,6 +11,11 @@
 .app__navbar-logo {
   font-size: 3rem;
   font-weight: bold;
+  margin: 1rem;
+}
+
+.app__navbar-logo img {
+  height: 3rem;
 }
 
 .app__navbar-logo a {
@@ -23,7 +28,7 @@
 }
 
 .app__navbar-link {
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 0 1rem;
   display: flex;
   align-items: center;
