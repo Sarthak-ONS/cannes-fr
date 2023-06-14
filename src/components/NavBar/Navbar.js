@@ -21,17 +21,17 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="app__navbar-links">
-        <input className="search-input" placeholder="Search" />
+        {!isAuthPage && <input className="search-input" placeholder="Search" />}
         {!isAuthPage && (
           <NavLink className="app__navbar-link" to={"/cart"}>
             <BsCart className="icon" size={20} />
-            <p className="app__navbar-link-text">Cart</p>
+            {/* <p className="app__navbar-link-text">Cart</p> */}
           </NavLink>
         )}
         {!isAuthPage && (
           <NavLink className="app__navbar-link" to={"/auth/login"}>
             <BsPerson className="icon" size={20} />
-            <p className="app__navbar-link-text">Login</p>
+            {/* <p className="app__navbar-link-text">Login</p> */}
           </NavLink>
         )}
       </div>

@@ -1,5 +1,5 @@
 .snackbar {
-  background-color: var(--background-color);
+  background-color: var(--primary-background-color);
   color: white;
   text-align: center;
   padding: 0.5rem;
@@ -10,7 +10,7 @@
 }
 
 .snackbar-icon {
-  background-color: var(--background-color);
+  background-color: var(--primary-background-color);
   color: white;
   size: 30;
   cursor: pointer;
