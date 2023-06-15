@@ -11,6 +11,7 @@
   font-weight: 700;
   font-family: Poppins;
   flex: 0.5;
+  color: var(--primary-background-color);
 }
 
 .form {

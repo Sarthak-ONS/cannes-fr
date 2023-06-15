@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/AuthPages/LoginPage";
+import LoginPage, { action as LoginAction } from "./pages/AuthPages/LoginPage";
 import ErrorPage from "./pages/ErrorPage";
-import SignupPage from "./pages/AuthPages/SignupPage";
+import SignupPage, {
+  action as SignupAction,
+} from "./pages/AuthPages/SignupPage";
 import CartPage from "./pages/UserPages/CartPage";
 
 const router = createBrowserRouter([
@@ -22,10 +24,12 @@ const router = createBrowserRouter([
         children: [
           {
             path: "login",
+            action: LoginAction,
             element: <LoginPage />,
           },
           {
             path: "signup",
+            action: SignupAction,
             element: <SignupPage />,
           },
         ],

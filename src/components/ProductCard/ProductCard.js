@@ -8,7 +8,7 @@ const ProductCard = ({ url, title, price, discountedPrice, isOnSale }) => {
     <div className="Product__card">
       {isOnSale && <div className="Product__card-sales-tag">Sale</div>}
       <div className="Product__card-img">
-        <img src={url} />
+        <img alt="Produc" src={url} />
       </div>
       <div className="Product__card-content">
         <div className="Product__card-details">

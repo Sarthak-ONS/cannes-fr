@@ -1,13 +1,20 @@
 import React from "react";
 import "./LoginPage.css";
-import { Form, NavLink, redirect } from "react-router-dom";
+import { Form, NavLink, useActionData } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
-  const errorMessage = "Invalid email";
+  let errorMessage = "Invalid email";
 
-  const isError = false;
+  let isError = false;
+
+  const data = useActionData();
+
+  if (data && data.status && data.status === "ERROR") {
+    isError = true;
+    errorMessage = data.errorMessage;
+  }
 
   return (
     <div className="login">
@@ -15,7 +22,7 @@ const LoginPage = () => {
         Style Elevated,<br></br> Shop with Confidence!
       </div>
       <div className="login__form">
-        <Form className="form">
+        <Form method="POST" className="form">
           <p className="form-title">Sign in to your account</p>
           <p className="signup-link">
             New Here?
@@ -23,10 +30,20 @@ const LoginPage = () => {
           </p>
           {isError && <div className="error-msg">{errorMessage}</div>}
           <div className="input-container">
-            <input placeholder="Enter email" required type="email" />
+            <input
+              placeholder="Enter email"
+              required
+              type="email"
+              name="email"
+            />
           </div>
           <div className="input-container">
-            <input placeholder="Enter password" required type="password" />
+            <input
+              placeholder="Enter password"
+              required
+              type="password"
+              name="password"
+            />
           </div>
           <button className="submit" type="submit">
             Sign in
@@ -53,13 +70,16 @@ export async function action({ request }) {
     password: data.get("password"),
   };
 
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(authData),
-  });
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_HOST}/auth/login`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(authData),
+    }
+  );
 
   if (
     response.status === 422 ||
@@ -82,5 +102,5 @@ export async function action({ request }) {
   expirationDate.setHours(expirationDate.getHours() + 1);
   localStorage.setItem("expiration", expirationDate.toISOString());
 
-  return redirect("/");
+  return response;
 }

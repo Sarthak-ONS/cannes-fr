@@ -28,7 +28,7 @@
 }
 
 .login-link {
-    text-align: center;
+  text-align: center;
   color: #6b7280;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -36,11 +36,18 @@
   margin-left: 0;
 }
 
-
 .error-msg {
   border: 1px solid red;
   border-radius: 6px;
   font-size: 0.875rem;
   padding: 0.5rem;
   border-left: 10px solid red;
+}
+
+.success-msg {
+  border: 1px solid green;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-left: 10px solid green;
 }

@@ -140,7 +140,10 @@ const HomePage = () => {
 
       <div className="Discount__Offer">
         <div className="Discount__Offer-image">
-          <img src="https://images.pexels.com/photos/4042029/pexels-photo-4042029.jpeg?auto=compress&cs=tinysrgb&w=600" />
+          <img
+            alt="Dis"
+            src="https://images.pexels.com/photos/4042029/pexels-photo-4042029.jpeg?auto=compress&cs=tinysrgb&w=600"
+          />
         </div>
         <div className="Discount__Offer-content">
           <div className="Discount__Offer-content__heading">Limited Offer</div>

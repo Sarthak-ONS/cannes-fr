@@ -10,19 +10,22 @@ const carouselElements = [
     id: "1",
     title: "Level up your style with our summer collections",
     linkto: "",
-    image: "https://images.pexels.com/photos/8386645/pexels-photo-8386645.jpeg?auto=compress",
+    image:
+      "https://images.pexels.com/photos/8386645/pexels-photo-8386645.jpeg?auto=compress",
   },
   {
     id: "1",
     title: "Level up your style with our summer collections",
     linkto: "",
-    image: "https://images.pexels.com/photos/7679453/pexels-photo-7679453.jpeg?auto=compress",
+    image:
+      "https://images.pexels.com/photos/7679453/pexels-photo-7679453.jpeg?auto=compress",
   },
   {
     id: "1",
     title: "Level up your style with our summer collections",
     linkto: "",
-    image: "https://images.pexels.com/photos/5531746/pexels-photo-5531746.jpeg?auto=compress",
+    image:
+      "https://images.pexels.com/photos/5531746/pexels-photo-5531746.jpeg?auto=compress",
   },
 ];
 
@@ -43,7 +46,7 @@ const CarouselSlider = () => {
   return (
     <Slider className="c_slider" {...settings}>
       {carouselElements.map((e) => (
-        <CarouselCard title={e.title} image={e.image} />
+        <CarouselCard key={e.id} title={e.title} image={e.image} />
       ))}
     </Slider>
   );

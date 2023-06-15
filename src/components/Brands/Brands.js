@@ -36,8 +36,8 @@ const Brands = () => {
       <br />
       <ul className="brands__list">
         {brands.map((e) => (
-          <li>
-            <BrandImage url={e.url} name={e.name} />
+          <li key={e.id}>
+            <BrandImage key={e.id} url={e.url} name={e.name} />
           </li>
         ))}
       </ul>
