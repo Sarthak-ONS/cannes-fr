@@ -1,6 +1,6 @@
 import React from "react";
 import "./LoginPage.css";
-import { Form, NavLink, useActionData } from "react-router-dom";
+import { Form, NavLink, redirect, useActionData } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 
@@ -102,5 +102,5 @@ export async function action({ request }) {
   expirationDate.setHours(expirationDate.getHours() + 1);
   localStorage.setItem("expiration", expirationDate.toISOString());
 
-  return response;
+  return redirect("/");
 }

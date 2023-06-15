@@ -111,7 +111,5 @@ export async function action({ request }) {
     throw { isError: true, message: data.message, status: response.status };
   }
 
-  console.log(await response.json());
-
   return response;
 }

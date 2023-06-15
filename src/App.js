@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
 import LoginPage, { action as LoginAction } from "./pages/AuthPages/LoginPage";
+import { action as LogoutAction } from "./pages/Logout";
 import ErrorPage from "./pages/ErrorPage";
 import SignupPage, {
   action as SignupAction,
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             path: "signup",
             action: SignupAction,
             element: <SignupPage />,
+          },
+          {
+            path: "logout",
+            action: LogoutAction,
           },
         ],
       },

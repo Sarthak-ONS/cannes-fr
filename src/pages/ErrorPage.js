@@ -1,4 +1,5 @@
 import React from "react";
+import "./ErrorPage.css";
 import { useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
@@ -19,9 +20,9 @@ const ErrorPage = () => {
   }
 
   return (
-    <div>
-      <p>{title}</p>
-      <p>{message}</p>
+    <div className="Error__page">
+      <p className="Error__page-title">{title}</p>
+      <p className="Error__page-subtitle">{message}</p>
     </div>
   );
 };

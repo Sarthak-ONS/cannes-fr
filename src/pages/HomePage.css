@@ -84,9 +84,13 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.Discount__Offer .Discount__Offer-image {
+  flex: 0.5;
+}
 
 .Discount__Offer .Discount__Offer-image img {
   height: 100%;
+  flex: 0.5;
 }
 
 .Discount__Offer .Discount__Offer-content {
