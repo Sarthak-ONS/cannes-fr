@@ -5,6 +5,7 @@ import CarouselSlider from "../components/CarouselSlider/CarouselSlider";
 import "./HomePage.css";
 import Brands from "../components/Brands/Brands";
 import FeatureCard from "../components/FeatureCard/FeatureCard";
+import ProductCard from "../components/ProductCard/ProductCard";
 
 const features = [
   {
@@ -33,11 +34,63 @@ const features = [
   },
 ];
 
+const featuredProducts = [
+  {
+    id: "kasnd98h3bri1qlax1",
+    title: "Autumn Dress",
+    isOnSale: true,
+    price: 58,
+    salePrice: 85,
+    url: "https://images.pexels.com/photos/17084696/pexels-photo-17084696/free-photo-of-woman-with-tulips-leaning-on-car-trunk.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: "kasnd98h3bridsad1221qlax1",
+    title: "Gray Shirt",
+    isOnSale: false,
+    price: 87,
+    url: "https://images.pexels.com/photos/6311590/pexels-photo-6311590.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+
+  {
+    id: "kasnd98h3bridsad1221qlax1",
+    title: "Gray Shirt",
+    isOnSale: false,
+    price: 87,
+    url: "https://images.pexels.com/photos/6311590/pexels-photo-6311590.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: "kasnd98h354jh3bri1qlax1",
+    title: "Leather Coat",
+    isOnSale: true,
+    price: 32,
+    salePrice: 40,
+    url: "https://images.pexels.com/photos/9821871/pexels-photo-9821871.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: "kasnd98h354jh3bdsadari1qlax1",
+    title: "Leather Coat",
+    isOnSale: true,
+    price: 32,
+    salePrice: 40,
+    url: "https://images.pexels.com/photos/9821871/pexels-photo-9821871.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: "kasnd98h3czx8976bri1qlax1",
+    title: "Autumn Dress",
+    isOnSale: true,
+    price: 58,
+    salePrice: 85,
+    url: "https://images.pexels.com/photos/17084696/pexels-photo-17084696/free-photo-of-woman-with-tulips-leaning-on-car-trunk.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+];
+
 const HomePage = () => {
   return (
     <div className="HomePage">
       <CarouselSlider />
       <Brands />
+
+      {/* Static Content Starts */}
       <div className="HomePage-content">
         <div className="HomePage-content-h1">
           We provide best
@@ -47,7 +100,8 @@ const HomePage = () => {
           We ensure our customers have the best shopping experience
         </div>
       </div>
-
+      {/* Static Content Ends */}
+      {/* Features Section Start */}
       <div className="HomePage-features">
         <ul>
           {features.map((e) => (
@@ -58,6 +112,29 @@ const HomePage = () => {
           ))}
         </ul>
       </div>
+      {/* Features Section Ends */}
+
+      {/* Featured Products Starts */}
+
+      <div className="featured__products">
+        <div className="featured__products-heading">Featured Products</div>
+        <ul>
+          {featuredProducts.map((item) => (
+            <li>
+              <ProductCard
+                url={item.url}
+                key={item.id}
+                title={item.title}
+                price={item.price}
+                isOnSale={item.isOnSale}
+                discountedPrice={item.salePrice}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Featured Products End */}
     </div>
   );
 };

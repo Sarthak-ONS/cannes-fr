@@ -1,4 +1,6 @@
 .snackbar {
+  width: 100%;
+
   background-color: var(--primary-background-color);
   color: white;
   text-align: center;
