@@ -1,11 +1,13 @@
 import React from "react";
 
 import "./SignupPage.css";
-import { Form, NavLink, useActionData } from "react-router-dom";
-
+import { Form, NavLink, useActionData, useNavigation } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 import { FcGoogle } from "react-icons/fc";
 
 const SignupPage = () => {
+  const navigation = useNavigation();
+
   let errorMessage = "Invalid email";
 
   let isError = false;
@@ -27,6 +29,7 @@ const SignupPage = () => {
   }
 
   let msgClass = isError ? "error-msg" : "success-msg";
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <div className="signup">
@@ -58,8 +61,10 @@ const SignupPage = () => {
               name="password"
             />
           </div>
-          <button className="submit" type="submit">
-            Create Account
+          <button disabled={isSubmitting} className="submit" type="submit">
+            <center style={{ backgroundColor: "transparent" }}>
+              {isSubmitting ? <Loader /> : "Create Account"}
+            </center>
           </button>
         </Form>
         <button className="submit social" type="submit">
