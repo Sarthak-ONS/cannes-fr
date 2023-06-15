@@ -1,5 +1,6 @@
 .HomePage {
   margin: 0 5rem;
+  padding-top: 8rem;
   margin-bottom: 3rem;
   /* height: fit-content; */
   width: auto;
@@ -29,6 +30,7 @@
 }
 
 .HomePage-features ul {
+  margin: 0.125rem;
   margin-top: 4rem;
 
   list-style: none;
@@ -150,6 +152,12 @@
   color: grey;
 }
 
+.nwsltrSubscription__actions {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
 .nwsltrSubscription__actions .nwsltrSubscription__actions-input input {
   outline: none;
   border: none;
@@ -183,9 +191,40 @@
 @media (max-width: 650px) {
   .HomePage {
     margin: 0;
+    padding: 0;
+    padding-top: 5rem;
   }
 
   .HomePage-content {
     flex-direction: column;
+  }
+
+  .HomePage-features ul {
+    margin: 1rem;
+  }
+
+  .Discount__Offer {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .Discount__Offer .Discount__Offer-image {
+    width: 100%;
+  }
+
+  .nwsltrSubscription__actions .nwsltrSubscription__actions-input input {
+    border-radius: 10px;
+  }
+  .nwsltrSubscription__actions .nwsltrSubscription__actions-input button {
+    border-radius: 10px;
+  }
+
+  .Discount__Offer .Discount__Offer-content {
+    margin: 0;
+    text-align: center;
+  }
+
+  .Discount__Offer .Discount__Offer-image {
+    display: none;
   }
 }

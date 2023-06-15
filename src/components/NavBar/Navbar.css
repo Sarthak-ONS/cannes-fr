@@ -1,7 +1,10 @@
 .app__navbar {
   width: 100%;
   padding: 0.25rem 4rem;
-  /* position: fixed; */
+  position: fixed;
+
+  z-index: 10;
+  top: 0;
 
   display: flex;
   justify-content: space-between;
@@ -50,10 +53,9 @@
   outline: none;
 }
 
-.search-input:focus{
+.search-input:focus {
   border: none;
-  outline: none
-  ;
+  outline: none;
 }
 
 @media (max-width: 650px) {
@@ -66,5 +68,12 @@
   }
   .app__navbar-link-text {
     display: none;
+  }
+
+  .search-input {
+    display: none;
+  }
+  .app__navbar-link {
+    padding: 0.5rem;
   }
 }

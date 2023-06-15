@@ -105,7 +105,7 @@ const HomePage = () => {
       <div className="HomePage-features">
         <ul>
           {features.map((e) => (
-            <li>
+            <li key={e.id}>
               {e.icon}
               <FeatureCard key={e.id} title={e.title} subtitle={e.subtitle} />
             </li>
