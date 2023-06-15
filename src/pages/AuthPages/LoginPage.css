@@ -1,4 +1,5 @@
 .login {
+  margin-top: 2.5rem;
   height: 70vh;
   display: flex;
   gap: 1rem;
@@ -148,8 +149,10 @@ hr {
 @media (max-width: 650px) {
   .login {
     flex-direction: column;
+    margin-top: 8rem;
   }
   .login__text {
     text-align: center;
+    font-size: 1.5rem;
   }
 }

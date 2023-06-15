@@ -1,8 +1,15 @@
 import React from "react";
 import "./LoginPage.css";
-import { Form, NavLink, redirect, useActionData } from "react-router-dom";
+import {
+  Form,
+  NavLink,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
+import Loader from "../../components/Loader/Loader";
 
 const LoginPage = () => {
   let errorMessage = "Invalid email";
@@ -15,6 +22,9 @@ const LoginPage = () => {
     isError = true;
     errorMessage = data.errorMessage;
   }
+  const navigation = useNavigation();
+
+  let isSubmitting = navigation.state === "submitting";
 
   return (
     <div className="login">
@@ -45,8 +55,10 @@ const LoginPage = () => {
               name="password"
             />
           </div>
-          <button className="submit" type="submit">
-            Sign in
+          <button disabled={isSubmitting} className="submit" type="submit">
+            <center style={{ backgroundColor: "transparent" }}>
+              {isSubmitting ? <Loader /> : "Sign in"}
+            </center>
           </button>
 
           <hr />

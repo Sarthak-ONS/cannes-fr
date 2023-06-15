@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: center;
   margin: 2rem;
+
+  margin-top: 8rem;
 }
 
 .signup__image {
@@ -53,6 +55,9 @@
 }
 
 @media (max-width: 650px) {
+  .signup {
+    padding-top: 15rem;
+  }
   .signup__image {
     display: none;
   }
