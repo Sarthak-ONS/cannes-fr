@@ -78,6 +78,104 @@
 .featured__products ul li {
   /* flex: 0 0 auto; */
 }
+
+.Discount__Offer {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Discount__Offer .Discount__Offer-image img {
+  height: 100%;
+}
+
+.Discount__Offer .Discount__Offer-content {
+  width: 100%;
+  background-color: var(--primary-text-color);
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 1rem;
+}
+
+.Discount__Offer .Discount__Offer-content .Discount__Offer-content__heading {
+  text-transform: uppercase;
+
+  background-color: transparent;
+  color: white;
+  letter-spacing: 0.5rem;
+}
+
+.Discount__Offer
+  .Discount__Offer-content
+  .Discount__Offer-content__description {
+  background-color: transparent;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.Discount__Offer .Discount__Offer-content .Discount__Offer-content__cta {
+  background-color: transparent;
+}
+
+.Discount__Offer .Discount__Offer-content .Discount__Offer-content__cta button {
+  padding: 0.75rem 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  color: var(--primary-text-color);
+  font-size: 0.9rem;
+}
+
+.nwsltrSubscription {
+  margin: 3rem 0;
+  text-align: center;
+  padding: 2rem;
+}
+
+.nwsltrSubscription .nwsltrSubscription__heading {
+  font-weight: bold;
+  font-size: 2rem;
+  color: var(--primary-text-color);
+}
+
+.nwsltrSubscription .nwsltrSubscription__subheading {
+  font-size: 1.25rem;
+  padding: 1rem;
+  color: grey;
+}
+
+.nwsltrSubscription__actions .nwsltrSubscription__actions-input input {
+  outline: none;
+  border: none;
+  background-color: #edf2f8;
+  padding: 0.25rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.nwsltrSubscription__actions .nwsltrSubscription__actions-input button {
+  background-color: var(--primary-text-color);
+  color: white;
+  padding: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+}
+
+.nwsltrSubscription__actions
+  .nwsltrSubscription__actions-input
+  input::placeholder {
+  font-size: 1rem;
+  padding: 1rem;
+}
+
 @media (max-width: 650px) {
   .HomePage {
     margin: 0;

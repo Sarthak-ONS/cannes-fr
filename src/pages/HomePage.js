@@ -135,6 +135,43 @@ const HomePage = () => {
       </div>
 
       {/* Featured Products End */}
+
+      {/* Discount Offer Section */}
+
+      <div className="Discount__Offer">
+        <div className="Discount__Offer-image">
+          <img src="https://images.pexels.com/photos/4042029/pexels-photo-4042029.jpeg?auto=compress&cs=tinysrgb&w=600" />
+        </div>
+        <div className="Discount__Offer-content">
+          <div className="Discount__Offer-content__heading">Limited Offer</div>
+          <div className="Discount__Offer-content__description">
+            35% off only this friday and get special gift
+          </div>
+          <div className="Discount__Offer-content__cta">
+            <button>Grab it</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Discount Offer Section Ends */}
+
+      {/* Newsletter Subscription Starts */}
+      <div className="nwsltrSubscription">
+        <div className="nwsltrSubscription__heading">
+          Subscribe to our newsletter to get updates
+          <br /> to our latest collections
+        </div>
+        <div className="nwsltrSubscription__subheading">
+          Get 20% off on your first order just by subscribing to our newsletter
+        </div>
+        <div className="nwsltrSubscription__actions">
+          <div className="nwsltrSubscription__actions-input">
+            <input placeholder="Enter your Email" />
+            <button>Subscribe</button>
+          </div>
+        </div>
+      </div>
+      {/* Newsletter Subscription Ends */}
     </div>
   );
 };
