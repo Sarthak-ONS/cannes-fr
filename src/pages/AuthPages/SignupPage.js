@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useHttp from "../../hooks/use-http";
 
 import "./SignupPage.css";
 import { Form, NavLink, useActionData, useNavigation } from "react-router-dom";
@@ -30,6 +31,21 @@ const SignupPage = () => {
 
   let msgClass = isError ? "error-msg" : "success-msg";
   const isSubmitting = navigation.state === "submitting";
+
+  const { error, isLoading, sendRequest: initiateGoogleSignIn } = useHttp();
+
+  const googleSignInClickHandler = () => {
+    const transformData = (data) => {
+      console.log(data);
+    };
+
+    initiateGoogleSignIn(
+      {
+        url: `${process.env.REACT_APP_BACKEND_HOST}/auth/google`,
+      },
+      transformData
+    );
+  };
 
   return (
     <div className="signup">
@@ -67,7 +83,7 @@ const SignupPage = () => {
             </center>
           </button>
         </Form>
-        <button className="submit social" type="submit">
+        <button onClick={googleSignInClickHandler} className="submit social" type="submit">
           <FcGoogle size={25} className="google-icons" />
           Sign up with Google
         </button>
