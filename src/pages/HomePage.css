@@ -206,6 +206,7 @@
   .Discount__Offer {
     flex-direction: column;
     gap: 0;
+    margin: 0.125rem;
   }
 
   .Discount__Offer .Discount__Offer-image {
@@ -226,5 +227,21 @@
 
   .Discount__Offer .Discount__Offer-image {
     display: none;
+  }
+
+  .Discount__Offer
+    .Discount__Offer-content
+    .Discount__Offer-content__description {
+    font-size: 1.5rem;
+
+    margin: 0.25rem;
+  }
+
+  .Discount__Offer
+    .Discount__Offer-content
+    .Discount__Offer-content__cta
+    button {
+    margin: 0.5rem;
+    padding: 0.25rem 0.5rem;
   }
 }

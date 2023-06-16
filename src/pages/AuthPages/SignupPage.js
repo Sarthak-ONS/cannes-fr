@@ -34,9 +34,17 @@ const SignupPage = () => {
 
   const { error, isLoading, sendRequest: initiateGoogleSignIn } = useHttp();
 
-  const googleSignInClickHandler = () => {
-    return window.open(`${process.env.REACT_APP_BACKEND_HOST}/auth/google`, '_self');
+  const googleSignInClickHandler = async () => {
+    fetch("/auth/google")
+      .then((response) => response.json())
+      .then((data) => {
+        const token = data.token;
 
+        localStorage.setItem("token", token);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -75,14 +83,12 @@ const SignupPage = () => {
             </center>
           </button>
         </Form>
-        <button
-          onClick={googleSignInClickHandler}
-          className="submit social"
-          type="submit"
-        >
-          <FcGoogle size={25} className="google-icons" />
-          Sign up with Google
-        </button>
+        <form action={`${`${process.env.REACT_APP_BACKEND_HOST}/auth/google`}`}>
+          <button className="submit social" type="submit">
+            <FcGoogle size={25} className="google-icons" />
+            Sign up with Google
+          </button>
+        </form>
         <hr />
         <p className="login-link">
           Already have an account?

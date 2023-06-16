@@ -12,7 +12,12 @@ export function getTokenDuration() {
 }
 
 export function getAuthToken() {
-  const token = localStorage.getItem("token");
+  const tokenfromCookie = document.cookie
+    .split(";")
+    .find((cookie) => cookie.startsWith("token="))
+    ?.split("=")[1];
+
+  const token = localStorage.getItem("token") | tokenfromCookie;
 
   if (!token) {
     return null;

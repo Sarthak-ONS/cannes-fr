@@ -13,9 +13,13 @@ const useHttp = () => {
         method: requestConfig.method ? requestConfig.method : "GET",
         headers: requestConfig.headers ? requestConfig.headers : {},
         body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+        mode: "no-cors",
       });
 
+      console.log(await response.json());
+
       if (!response.ok) {
+        applyData(response);
         throw new Error("Request failed!");
       }
       const data = await response.json();
