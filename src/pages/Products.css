@@ -26,3 +26,9 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+@media (max-width: 650px) {
+  .Products-Page__filterContainer {
+    display: none;
+  }
+}

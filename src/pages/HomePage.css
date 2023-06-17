@@ -54,7 +54,7 @@
 
 .featured__products {
   margin: 2rem 0;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
 }
 
 .featured__products-heading {
@@ -70,15 +70,9 @@
   gap: 1rem;
   flex-wrap: nowrap;
 
-  height: 400px;
-
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
-}
-
-.featured__products ul li {
-  /* flex: 0 0 auto; */
 }
 
 .Discount__Offer {

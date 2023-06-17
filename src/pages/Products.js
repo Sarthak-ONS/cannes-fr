@@ -30,6 +30,7 @@ const ProductsPage = () => {
               url={item.imageUrls[0].secure_url}
               title={item.name}
               price={item.price}
+              brand={item.brand}
             ></ProductCard>
           ))}
         </ul>
