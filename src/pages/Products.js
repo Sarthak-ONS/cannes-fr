@@ -3,11 +3,12 @@ import { useLoaderData } from "react-router-dom";
 import "./Products.css";
 
 import ProductCard from "../components/ProductCard/ProductCard";
+import SelectCategoryCard from "../components/SelectCategoryCard/SelectCategoryCard";
 
 const ProductsPage = () => {
   const data = useLoaderData();
-  console.log(data);
 
+  const [setselectedCategories, setSetselectedCategories] = useState([]);
   if (!data.products || data.products.length === 0) {
     return (
       <div className="Products-Page">
@@ -17,28 +18,54 @@ const ProductsPage = () => {
       </div>
     );
   }
+  const onChecked = (name) => {
+    setSetselectedCategories((prevState) => [...prevState, name]);
+  };
+
+  const onUnChecked = (name) => {
+    setSetselectedCategories((prevState) =>
+      prevState.filter((value) => value !== name)
+    );
+  };
+
+  console.log(setselectedCategories);
 
   return (
     <div className="Products-Page">
       <div className="Products-Page__filterContainer">
         <p>Filters</p>
-        <ul>
-          {data.categories.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
+        <div className="categories-list">
+          <h4>Categories</h4>
+          <ul>
+            {data.categories.map((item) => (
+              <SelectCategoryCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                onChecked={onChecked}
+                onUnchecked={onUnChecked}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="Products-Page__ProductContainer">
         <ul>
-          {data.products.map((item) => (
-            <ProductCard
-              key={item._id}
-              url={item.imageUrls[0].secure_url}
-              title={item.name}
-              price={item.price}
-              brand={item.brand}
-            ></ProductCard>
-          ))}
+          {data.products
+            .filter(
+              (item) =>
+                setselectedCategories.length === 0 ||
+                setselectedCategories.includes(item.category)
+            )
+            .map((item) => (
+              <ProductCard
+                key={item._id}
+                url={item.imageUrls[0].secure_url}
+                title={item.name}
+                price={item.price}
+                brand={item.brand}
+              ></ProductCard>
+            ))}
         </ul>
       </div>
     </div>

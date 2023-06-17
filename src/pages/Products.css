@@ -28,6 +28,18 @@
   /* justify-content: space-around; */
 }
 
+.categories-list ul {
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.category-card {
+  display: flex;
+}
+.category-card input {
+  margin-right: 0.25rem;
+}
+
 @media (max-width: 650px) {
   .Products-Page {
     padding: 0;
