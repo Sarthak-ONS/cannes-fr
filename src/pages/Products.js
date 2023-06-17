@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard/ProductCard";
 
 const ProductsPage = () => {
   const data = useLoaderData();
-  console.log(data.products);
+  console.log(data);
 
   if (!data.products || data.products.length === 0) {
     return (
@@ -22,11 +22,17 @@ const ProductsPage = () => {
     <div className="Products-Page">
       <div className="Products-Page__filterContainer">
         <p>Filters</p>
+        <ul>
+          {data.categories.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
       </div>
       <div className="Products-Page__ProductContainer">
         <ul>
           {data.products.map((item) => (
             <ProductCard
+              key={item._id}
               url={item.imageUrls[0].secure_url}
               title={item.name}
               price={item.price}

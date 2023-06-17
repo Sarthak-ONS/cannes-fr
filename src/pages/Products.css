@@ -9,6 +9,7 @@
 
 .Products-Page__filterContainer {
   background-color: transparent;
+  position: static;
   flex: 0.2;
 }
 
@@ -24,11 +25,17 @@
 .Products-Page__ProductContainer ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 @media (max-width: 650px) {
+  .Products-Page {
+    padding: 0;
+    padding-top: 70px;
+  }
   .Products-Page__filterContainer {
     display: none;
+  }
+  .Products-Page__ProductContainer ul {
   }
 }

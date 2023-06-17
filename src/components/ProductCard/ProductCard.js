@@ -9,6 +9,10 @@ const ProductCard = ({
   isOnSale,
   brand = "Levis",
 }) => {
+  const addtoCardButtonClickHandler = () => {
+    console.log("ADDING TO CARD TAPPED");
+  };
+
   return (
     <div className="Product__card">
       {isOnSale && <div className="Product__card-sales-tag">Sale</div>}
@@ -26,6 +30,9 @@ const ProductCard = ({
                 Rs. {discountedPrice}
               </div>
             )}
+            <button onClick={addtoCardButtonClickHandler} className="add-to-cart">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
