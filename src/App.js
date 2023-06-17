@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
+import ProductsPage, { loader as ProductLoader } from "./pages/Products";
 import LoginPage, { action as LoginAction } from "./pages/AuthPages/LoginPage";
 import { action as LogoutAction } from "./pages/Logout";
 import ErrorPage from "./pages/ErrorPage";
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "products",
+        loader: ProductLoader,
+        element: <ProductsPage />,
       },
       {
         path: "auth",

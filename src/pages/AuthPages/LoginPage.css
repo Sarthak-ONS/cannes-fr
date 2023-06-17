@@ -1,6 +1,5 @@
 .login {
-  margin-top: 2.5rem;
-  height: 70vh;
+  height: 100vh;
   display: flex;
   gap: 1rem;
   align-items: center;

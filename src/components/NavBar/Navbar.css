@@ -1,14 +1,19 @@
+.navbar__container {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
 .app__navbar {
   width: 100%;
   padding: 0rem 4rem;
-  position: fixed;
+  /* position: fixed; */
 
-  z-index: 10;
   top: 0;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .app__navbar-logo {
@@ -16,12 +21,15 @@
   margin: 0.5rem 1rem;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .app__navbar-logo img {
   height: 2.5rem;
+  align-self: center;
+  display: flex;
 }
 
 .app__navbar-logo a {
@@ -62,8 +70,12 @@
 }
 
 @media (max-width: 650px) {
+  .navbar__container {
+    position: fixed;
+    top: 0;
+  }
   .app__navbar {
-    padding: 1rem;
+    padding: 0.125rem;
   }
   .app__navbar-logo {
     font-size: 2rem;
