@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProductCard.css";
 import {} from "react-router-dom";
+import { getAuthToken } from "../../utils/isAuth";
 
 const ProductCard = ({
   id,
@@ -21,6 +22,7 @@ const ProductCard = ({
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + getAuthToken(),
         },
         body: JSON.stringify({ productId: id }),
       }

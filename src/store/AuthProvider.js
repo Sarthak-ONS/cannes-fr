@@ -4,6 +4,7 @@ import AuthContext from "./auth-context";
 import { getAuthToken } from "../utils/isAuth";
 
 const AuthProvider = (props) => {
+  const [refresh, setRefresh] = useState(true);
   const [userProfile, setUserProfile] = useState({
     userId: "",
     name: "",
@@ -11,9 +12,6 @@ const AuthProvider = (props) => {
     imageUrl: "",
   });
   const token = getAuthToken();
-
-  console.log("The token is : ", token);
-
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -31,20 +29,29 @@ const AuthProvider = (props) => {
         if (response.ok) {
           const userProfileData = await response.json();
           setUserProfile(userProfileData.user);
+          setRefresh(false);
         } else {
           console.log(response);
         }
       } catch (error) {
         console.log(error, "This is the error from catch block");
+        setRefresh(false);
       }
     };
 
-    fetchUserProfile();
+    if (refresh) {
+      fetchUserProfile();
+    }
   }, [token]);
+
+  const refreshAuth = () => {
+    console.log("REFRESH AUTH VALUE CHANGED");
+    setRefresh(true);
+  };
 
   const authContext = {
     ...userProfile,
-    setUserProfile,
+    refreshAuth,
   };
 
   return (

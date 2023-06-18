@@ -43,15 +43,15 @@ const router = createBrowserRouter([
             action: SignupAction,
             element: <SignupPage />,
           },
-          {
-            path: "logout",
-            action: LogoutAction,
-          },
         ],
       },
       {
         path: "cart",
         element: <CartPage />,
+      },
+      {
+        path: "/logout",
+        action: LogoutAction,
       },
     ],
   },

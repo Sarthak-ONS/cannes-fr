@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./LoginPage.css";
 import {
   Form,
   NavLink,
-  redirect,
+  useNavigate,
   useActionData,
   useNavigation,
 } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 import Loader from "../../components/Loader/Loader";
+import AuthContext from "../../store/auth-context";
 
 const LoginPage = () => {
+  const { refreshAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleRefresh = () => {
+    refreshAuth();
+  };
+
   let errorMessage = "Invalid email";
 
   let isError = false;
@@ -19,6 +26,12 @@ const LoginPage = () => {
   const data = useActionData();
 
   console.log(data);
+
+  if (data && data.status === "SUCCESS" && data.token) {
+    console.log("LOGIN IS SUCCESSFULL");
+    handleRefresh();
+    navigate("/");
+  }
 
   if (data && data.status && data.status === "ERROR") {
     isError = true;
@@ -116,5 +129,5 @@ export async function action({ request }) {
   expirationDate.setHours(expirationDate.getHours() + 1);
   localStorage.setItem("expiration", expirationDate.toISOString());
 
-  return redirect("/");
+  return { ...resData };
 }
