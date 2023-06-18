@@ -28,8 +28,6 @@ const ProductsPage = () => {
     );
   };
 
-  console.log(setselectedCategories);
-
   return (
     <div className="Products-Page">
       <div className="Products-Page__filterContainer">
@@ -60,6 +58,7 @@ const ProductsPage = () => {
             .map((item) => (
               <ProductCard
                 key={item._id}
+                id={item._id}
                 url={item.imageUrls[0].secure_url}
                 title={item.name}
                 price={item.price}

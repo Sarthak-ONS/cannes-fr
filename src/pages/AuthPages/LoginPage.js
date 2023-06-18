@@ -18,6 +18,8 @@ const LoginPage = () => {
 
   const data = useActionData();
 
+  console.log(data);
+
   if (data && data.status && data.status === "ERROR") {
     isError = true;
     errorMessage = data.errorMessage;
@@ -106,13 +108,5 @@ export async function action({ request }) {
     throw { isError: true, message: data.message, status: response.status };
   }
 
-  const resData = await response.json();
-  const token = resData.token;
-
-  localStorage.setItem("token", token);
-  const expirationDate = new Date();
-  expirationDate.setHours(expirationDate.getHours() + 1);
-  localStorage.setItem("expiration", expirationDate.toISOString());
-
-  return redirect("/");
+  return response;
 }

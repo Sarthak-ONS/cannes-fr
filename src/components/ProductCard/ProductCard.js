@@ -1,16 +1,29 @@
 import React from "react";
 import "./ProductCard.css";
+import {} from "react-router-dom";
 
 const ProductCard = ({
+  id,
   url,
   title,
   price,
   discountedPrice,
-  isOnSale,
+  isOnSale = true,
   brand = "Levis",
 }) => {
-  const addtoCardButtonClickHandler = () => {
-    console.log("ADDING TO CARD TAPPED");
+  const addtoCardButtonClickHandler = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_HOST}/cart/add`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: id }),
+      }
+    );
+    console.log(response);
   };
 
   return (
@@ -30,7 +43,11 @@ const ProductCard = ({
                 Rs. {discountedPrice}
               </div>
             )}
-            <button onClick={addtoCardButtonClickHandler} className="add-to-cart">
+            <button
+              onClick={addtoCardButtonClickHandler}
+              className="add-to-cart"
+              type="submit"
+            >
               Add to Cart
             </button>
           </div>
