@@ -12,16 +12,13 @@ export function getTokenDuration() {
 }
 
 export function getAuthToken() {
-  const tokenfromCookie = document.cookie
-    .split(";")
-    .find((cookie) => cookie.startsWith("token="))
-    ?.split("=")[1];
-
-  const token = localStorage.getItem("token") | tokenfromCookie;
+  const token = localStorage.getItem("token");
 
   if (!token) {
     return null;
   }
+
+  //175
 
   const tokenDuration = getTokenDuration();
 

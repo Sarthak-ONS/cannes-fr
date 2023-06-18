@@ -10,6 +10,8 @@ const ProductCard = ({
   discountedPrice,
   isOnSale = true,
   brand = "Levis",
+  addToCartSuccess,
+  addToCartFailure,
 }) => {
   const addtoCardButtonClickHandler = async () => {
     const response = await fetch(
@@ -23,7 +25,11 @@ const ProductCard = ({
         body: JSON.stringify({ productId: id }),
       }
     );
-    console.log(response);
+    if (response.ok) {
+      addToCartSuccess();
+    } else {
+      addToCartFailure();
+    }
   };
 
   return (

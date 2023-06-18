@@ -120,7 +120,7 @@ const HomePage = () => {
         <div className="featured__products-heading">Featured Products</div>
         <ul>
           {featuredProducts.map((item) => (
-            <li>
+            <li key={`${item.id}`}>
               <ProductCard
                 url={item.url}
                 key={item.id}

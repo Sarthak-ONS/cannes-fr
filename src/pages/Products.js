@@ -2,22 +2,29 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import "./Products.css";
 
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
 import ProductCard from "../components/ProductCard/ProductCard";
 import SelectCategoryCard from "../components/SelectCategoryCard/SelectCategoryCard";
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const ProductsPage = () => {
+  const [open, setOpen] = useState(false);
   const data = useLoaderData();
 
   const [setselectedCategories, setSetselectedCategories] = useState([]);
-  if (!data.products || data.products.length === 0) {
-    return (
-      <div className="Products-Page">
-        <center>
-          <p>Nothin to show</p>
-        </center>
-      </div>
-    );
-  }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   const onChecked = (name) => {
     setSetselectedCategories((prevState) => [...prevState, name]);
   };
@@ -27,6 +34,11 @@ const ProductsPage = () => {
       prevState.filter((value) => value !== name)
     );
   };
+
+  const addToCartSuccess = () => {
+    setOpen(true);
+  };
+  const addToCartFailure = () => {};
 
   return (
     <div className="Products-Page">
@@ -63,10 +75,30 @@ const ProductsPage = () => {
                 title={item.name}
                 price={item.price}
                 brand={item.brand}
+                addToCartSuccess={addToCartSuccess}
+                addToCartFailure={addToCartFailure}
               ></ProductCard>
             ))}
         </ul>
       </div>
+      <Snackbar
+        style={{ color: "var(--primary-text-color)" }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+      >
+        <Alert
+          style={{
+            backgroundColor: "transparent",
+            color: "var(--primary-text-color)",
+          }}
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Added to Cart!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

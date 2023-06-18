@@ -108,5 +108,16 @@ export async function action({ request }) {
     throw { isError: true, message: data.message, status: response.status };
   }
 
-  return response;
+  const resData = await response.json();
+  const token = resData.token;
+
+  console.log(token);
+
+  localStorage.setItem("token", token);
+  const expirationDate = new Date();
+  expirationDate.setHours(expirationDate.getHours() + 1);
+  localStorage.setItem("expiration", expirationDate.toISOString());
+  console.log("AFTER SETTING DATA TO LOCAL STORAGE");
+
+  return {};
 }

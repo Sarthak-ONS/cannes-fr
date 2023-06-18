@@ -10,12 +10,15 @@ import SignupPage, {
 } from "./pages/AuthPages/SignupPage";
 import CartPage from "./pages/UserPages/CartPage";
 
+import { tokenLoader } from "./utils/isAuth";
+
 const router = createBrowserRouter([
   {
     id: "root",
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    loader: tokenLoader,
     children: [
       {
         index: true,
