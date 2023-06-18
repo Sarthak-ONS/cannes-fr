@@ -11,6 +11,7 @@ import SignupPage, {
 import CartPage from "./pages/UserPages/CartPage";
 
 import { tokenLoader } from "./utils/isAuth";
+import AuthProvider from "./store/AuthProvider";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

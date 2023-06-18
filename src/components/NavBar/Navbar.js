@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 
 import logo from "../../Assets/logo.png";
@@ -8,19 +8,19 @@ import { BsCart, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import CustomSnackbar from "../Snackbar/Snackbar";
+import AuthContext from "../../store/auth-context";
 
 const Navbar = () => {
+  const authCtx = useContext(AuthContext);
+
+  console.log(authCtx, "This is the data in Navbr");
+
   const location = useLocation();
 
   const pathName = location.pathname;
 
   const isAuthPage = pathName.includes("auth");
 
-  const [isHome, setisHome] = useState(true);
-
-  const onSnackbarCloseHandler = () => {
-    setisHome(false);
-  };
   return (
     <div className="navbar__container">
       {/* {isHome && <CustomSnackbar onClose={onSnackbarCloseHandler} />} */}
@@ -29,6 +29,9 @@ const Navbar = () => {
           <NavLink to={"/"}>
             <img alt="Brand Logo" src={logo}></img>
           </NavLink>
+          <div className="app__navbar-name">
+            Hello, {authCtx.name.split(" ")[0]}
+          </div>
         </div>
         <div className="app__navbar-links">
           {!isAuthPage && (
