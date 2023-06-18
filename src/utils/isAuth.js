@@ -14,6 +14,14 @@ export function getTokenDuration() {
 export function getAuthToken() {
   const token = localStorage.getItem("token");
 
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith(`token=`));
+
+  if (cookieValue) {
+    console.log(cookieValue, "This is the cookie value ");
+  }
+
   if (!token) {
     return null;
   }

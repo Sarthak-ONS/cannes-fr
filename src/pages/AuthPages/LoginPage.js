@@ -62,13 +62,14 @@ const LoginPage = () => {
               {isSubmitting ? <Loader /> : "Sign in"}
             </center>
           </button>
-
           <hr />
+        </Form>
+        <form action={`${`${process.env.REACT_APP_BACKEND_HOST}/auth/google`}`}>
           <button className="submit social" type="submit">
             <FcGoogle size={25} className="google-icons" />
-            Sign in with Google
+            Continue with Google
           </button>
-        </Form>
+        </form>
       </div>
     </div>
   );
@@ -110,14 +111,10 @@ export async function action({ request }) {
 
   const resData = await response.json();
   const token = resData.token;
-
-  console.log(token);
-
   localStorage.setItem("token", token);
   const expirationDate = new Date();
   expirationDate.setHours(expirationDate.getHours() + 1);
   localStorage.setItem("expiration", expirationDate.toISOString());
-  console.log("AFTER SETTING DATA TO LOCAL STORAGE");
 
-  return {};
+  return redirect("/");
 }

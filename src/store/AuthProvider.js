@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import AuthContext from "./auth-context";
+import { getAuthToken } from "../utils/isAuth";
 
 const AuthProvider = (props) => {
   const [userProfile, setUserProfile] = useState({
@@ -9,6 +10,9 @@ const AuthProvider = (props) => {
     email: "",
     imageUrl: "",
   });
+  const token = getAuthToken();
+
+  console.log("The token is : ", token);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -18,6 +22,9 @@ const AuthProvider = (props) => {
           {
             method: "GET",
             credentials: "include",
+            headers: {
+              Authorization: "Bearer " + token,
+            },
           }
         );
 
@@ -33,7 +40,7 @@ const AuthProvider = (props) => {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [token]);
 
   const authContext = {
     ...userProfile,
