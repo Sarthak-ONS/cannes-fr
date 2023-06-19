@@ -43,7 +43,7 @@ const ProductCard = ({
       <div className="Product__card-content">
         <div className="Product__card-details">
           <div className="Product__card-brand">{brand}</div>
-          <div className="Product__card-title">{title}</div>
+          <div className="Product__card-title">{id}</div>
           <div className="Product__card-prices">
             <div className="Product__card-prices_price1">Rs. {price}</div>
             {isOnSale && (

@@ -4,12 +4,14 @@ import Navbar from "../components/NavBar/Navbar";
 
 import { getTokenDuration } from "../utils/isAuth";
 import AuthContext from "../store/auth-context";
+import CartContext from "../store/cart-context";
 
 const RootLayout = () => {
   const token = useLoaderData();
   const submit = useSubmit();
 
   const authCtx = useContext(AuthContext);
+  const cartCtx = useContext(CartContext);
 
   useEffect(() => {
     if (!token) {
@@ -27,7 +29,6 @@ const RootLayout = () => {
     }, tokenDuration);
   }, [submit, token]);
 
-  // const token = getAuthToken();
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -54,6 +55,37 @@ const RootLayout = () => {
     };
 
     fetchUserProfile();
+  }, [token]);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_HOST}/cart`,
+          {
+            method: "GET",
+            credentials: "include",
+            headers: token
+              ? {
+                  Authorization: "Bearer " + token,
+                }
+              : {},
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.cart , "THis is the data from cartCtx set Cart");
+          cartCtx.setcart(data.cart);
+        } else {
+          console.log(response);
+        }
+      } catch (error) {
+        console.log(error, "This is the error from catch block");
+      }
+    };
+
+    fetchCart();
   }, [token]);
 
   return (

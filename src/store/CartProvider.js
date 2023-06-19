@@ -8,27 +8,67 @@ const CartProvider = (props) => {
 
   const [refreshCart, setrefreshCart] = useState(false);
 
-  const qtyChangeHandler = async (productId) => {
-    try {
-      console.log(productId);
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_HOST}/cart/add`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: "Bearer " + token,
-          },
-          body: JSON.stringify({ productId }),
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_HOST}/cart`,
+          {
+            method: "GET",
+            credentials: "include",
+            headers: getAuthToken()
+              ? {
+                  Authorization: "Bearer " + getAuthToken(),
+                }
+              : {},
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.cart, "THis is the data from cartCtx set Cart");
+          setcart({});
+          setcart(data.cart);
+          setrefreshCart(false);
+        } else {
+          console.log(response);
+          setrefreshCart(false);
         }
-      );
+      } catch (error) {
+        console.log(error, "This is the error from catch block");
+        setrefreshCart(false);
+      }
+    };
+
+    fetchCart();
+  }, [refreshCart]);
+
+  const qtyChangeHandler = async (productId, addorRemove) => {
+    let url = `${process.env.REACT_APP_BACKEND_HOST}/cart`;
+
+    if (addorRemove) {
+      url = url + "/add";
+    } else {
+      url = url + "/remove";
+    }
+
+    console.log(url);
+    try {
+      const response = await fetch(url, {
+        method: addorRemove ? "POST" : "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getAuthToken(),
+        },
+        body: JSON.stringify({ productId }),
+      });
 
       console.log(response);
 
       if (response.ok) {
         const data = await response.json();
-        setcart(data.cart);
+        console.log(data, "This is the data after adding a product");
         setrefreshCart(true);
       } else {
       }
@@ -37,41 +77,9 @@ const CartProvider = (props) => {
     }
   };
 
-  const token = getAuthToken();
-  useEffect(() => {
-    console.log(token, "This is the token value");
-
-    const fetchCart = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_HOST}/cart`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers: token
-              ? {
-                  Authorization: "Bearer " + token,
-                }
-              : {},
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          setcart(data.cart);
-        } else {
-          console.log(response);
-        }
-      } catch (error) {
-        console.log(error, "This is the error from catch block");
-      }
-    };
-
-    fetchCart();
-  }, [token, refreshCart]);
-
   const cartContext = {
     ...cart,
+    setcart,
     setrefreshCart,
     qtyChangeHandler,
   };

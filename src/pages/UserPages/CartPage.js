@@ -36,15 +36,15 @@ const CartPage = () => {
                 product && (
                   <li key={_id}>
                     <CartProductCard
-                      id={_id}
-                      name={product.name}
+                      id={product._id}
+                      name={product._id}
                       image={product.imageUrls[0].secure_url}
                       quantity={quantity}
                       onAddClick={() => {
-                        cartCtx.qtyChangeHandler(_id, true);
+                        cartCtx.qtyChangeHandler(product._id, true);
                       }}
                       onRemoveClick={() => {
-                        cartCtx.qtyChangeHandler(_id, false);
+                        cartCtx.qtyChangeHandler(product._id, false);
                       }}
                     />
                   </li>
