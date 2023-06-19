@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import "./Products.css";
 
@@ -7,12 +7,14 @@ import MuiAlert from "@mui/material/Alert";
 
 import ProductCard from "../components/ProductCard/ProductCard";
 import SelectCategoryCard from "../components/SelectCategoryCard/SelectCategoryCard";
+import CartContext from "../store/cart-context";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const ProductsPage = () => {
+  const cartCtx = useContext(CartContext);
   const [open, setOpen] = useState(false);
   const data = useLoaderData();
 
@@ -37,6 +39,7 @@ const ProductsPage = () => {
 
   const addToCartSuccess = () => {
     setOpen(true);
+    cartCtx.setrefreshCart(true);
   };
   const addToCartFailure = () => {};
 

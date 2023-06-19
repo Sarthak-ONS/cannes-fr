@@ -1,3 +1,101 @@
-.Cartpage{
-    padding-top: 8rem;
+.Cartpage {
+  height: calc(100vh - 60px);
+  padding: 0 0.5rem;
+  padding-top: 60px;
+}
+.Cartpage__heading {
+  font-size: 3rem;
+}
+.CartPage-Empty {
+  padding-top: 60px;
+  height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.CartPage-Empty p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.Cartpage-items {
+  display: flex;
+}
+
+.Cartpage-items ul {
+  list-style: none;
+}
+
+.Cartpage-heading__title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+.Cartpage-heading__title span {
+  font-weight: 500;
+}
+
+.CartProductCard {
+  max-width: 500px;
+  min-width: 500px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background-color: #edf2f8;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 0.25rem;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+.CartProductCard p {
+  background-color: transparent;
+}
+
+.CartProductCard .CartProductCard-image {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent;
+
+  max-width: 70%;
+}
+
+.CartProductCard .CartProductCard-image img {
+  height: 3rem;
+  width: 3rem;
+}
+.CartProductCard .CartProductCard-image {
+  flex: 0.75;
+}
+
+.CartProductCard .CartProductCard-content p {
+  background-color: #edf2f8;
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: hidden;
+  max-lines: 1;
+  flex: 0.75;
+}
+
+.CartProductCard-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  font-weight: bold;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+}
+
+.CartProductCard-qty {
+  display: flex;
+}
+
+.CartProductCard-qty .icon {
+  border: 1px solid rgb(139, 139, 139);
+  border-radius: 50%;
 }
