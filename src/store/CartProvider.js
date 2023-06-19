@@ -6,6 +6,8 @@ import { getAuthToken } from "../utils/isAuth";
 const CartProvider = (props) => {
   const [cart, setcart] = useState({});
 
+  const [totalItems, setTotalItems] = useState(0);
+
   const [refreshCart, setrefreshCart] = useState(false);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ const CartProvider = (props) => {
           console.log(data.cart, "THis is the data from cartCtx set Cart");
           setcart({});
           setcart(data.cart);
+          setTotalItems(data.cart.items.length);
           setrefreshCart(false);
         } else {
           console.log(response);
@@ -79,6 +82,8 @@ const CartProvider = (props) => {
 
   const cartContext = {
     ...cart,
+    totalItems,
+    setTotalItems,
     setcart,
     setrefreshCart,
     qtyChangeHandler,

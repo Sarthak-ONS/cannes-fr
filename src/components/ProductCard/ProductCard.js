@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductCard.css";
-import {} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../../utils/isAuth";
 
 const ProductCard = ({
@@ -14,6 +14,8 @@ const ProductCard = ({
   addToCartSuccess,
   addToCartFailure,
 }) => {
+  const navigate = useNavigate();
+
   const addtoCardButtonClickHandler = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_HOST}/cart/add`,
@@ -30,7 +32,7 @@ const ProductCard = ({
     if (response.ok) {
       addToCartSuccess();
     } else {
-      addToCartFailure();
+      navigate('/auth/login')
     }
   };
 

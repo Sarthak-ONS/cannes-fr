@@ -75,8 +75,9 @@ const RootLayout = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data.cart , "THis is the data from cartCtx set Cart");
+          console.log(data.cart, "THis is the data from cartCtx set Cart");
           cartCtx.setcart(data.cart);
+          cartCtx.setTotalItems(data.cart.items.length);
         } else {
           console.log(response);
         }

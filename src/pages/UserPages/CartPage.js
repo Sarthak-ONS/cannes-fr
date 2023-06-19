@@ -23,47 +23,65 @@ const CartPage = () => {
       </div>
     );
 
+  let totalPrice = 0;
+  cartCtx.items.forEach(({ product, quantity }) => {
+    totalPrice = totalPrice + product.price * quantity;
+  });
+
   return (
-    <div className="Cartpage">
+    <div className="Cartpage-wrapper">
       <div className="Cartpage-heading__title">
         {authCtx.name}'s <span>Cart</span>
+        <div className="Cartpage-heading__title-timeline">
+          Cart · Checkout · Payment
+        </div>
       </div>
-      <div className="Cartpage-items">
-        <ul>
-          {cartCtx.items &&
-            cartCtx.items.map(
-              ({ product, quantity, _id }) =>
-                product && (
-                  <li key={_id}>
-                    <CartProductCard
-                      id={product._id}
-                      name={product._id}
-                      image={product.imageUrls[0].secure_url}
-                      quantity={quantity}
-                      onAddClick={() => {
-                        cartCtx.qtyChangeHandler(product._id, true);
-                      }}
-                      onRemoveClick={() => {
-                        cartCtx.qtyChangeHandler(product._id, false);
-                      }}
-                    />
-                  </li>
-                )
-            )}
-        </ul>
+      <div className="Cartpage">
+        <div className="Cartpage-items">
+          <ul>
+            {cartCtx.items &&
+              cartCtx.items.map(
+                ({ product, quantity, _id }) =>
+                  product && (
+                    <li key={_id}>
+                      <CartProductCard
+                        id={product._id}
+                        price={product.price}
+                        name={product.name}
+                        image={product.imageUrls[0].secure_url}
+                        quantity={quantity}
+                        onAddClick={() => {
+                          cartCtx.qtyChangeHandler(product._id, true);
+                        }}
+                        onRemoveClick={() => {
+                          cartCtx.qtyChangeHandler(product._id, false);
+                        }}
+                      />
+                    </li>
+                  )
+              )}
+          </ul>
+        </div>
+      </div>
+      <div className="checkout-container">
+        <button>Rs. {totalPrice} Checkout</button>
       </div>
     </div>
   );
 };
 
 const CartProductCard = ({
-  id,
   name,
   image,
   quantity,
   onAddClick,
   onRemoveClick,
+  price,
 }) => {
+  if (name.length > 15) {
+    name = name.slice(0, 15);
+  }
+
   return (
     <div className="CartProductCard">
       <div className="CartProductCard-image">
@@ -74,6 +92,7 @@ const CartProductCard = ({
       </div>
 
       <div className="CartProductCard-qty">
+        Rs. {price}
         <GrFormAdd className="icon" size={20} onClick={onAddClick} />
         <p>{quantity}</p>
         <BiMinus className="icon" size={20} onClick={onRemoveClick} />

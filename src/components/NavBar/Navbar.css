@@ -114,8 +114,25 @@
   background-color: transparent;
 }
 
-.toggle-menu ul li:hover{
+.toggle-menu ul li:hover {
   background-color: #edf2f8;
+}
+
+.cart-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon .icon {
+  /* position: relative; */
+}
+
+.cart-icon span {
+  background-color: transparent;
+  color: var(--primary-text-color);
+  padding: 0 0.25rem;
+  border-radius: 50%;
 }
 
 @media (max-width: 650px) {

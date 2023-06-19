@@ -1,11 +1,22 @@
-.Cartpage {
+.Cartpage-wrapper {
   height: calc(100vh - 60px);
   padding: 0 0.5rem;
   padding-top: 60px;
+
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Cartpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
 }
 .Cartpage__heading {
   font-size: 3rem;
+  text-align: center;
 }
 .CartPage-Empty {
   padding-top: 60px;
@@ -23,6 +34,7 @@
 
 .Cartpage-items {
   display: flex;
+  justify-content: center;
 }
 
 .Cartpage-items ul {
@@ -36,6 +48,11 @@
 }
 .Cartpage-heading__title span {
   font-weight: 500;
+}
+.Cartpage-heading__title-timeline {
+  font-weight: 800;
+  font-size: 1rem;
+  color: green;
 }
 
 .CartProductCard {
@@ -99,4 +116,18 @@
 .CartProductCard-qty .icon {
   border: 1px solid rgb(139, 139, 139);
   border-radius: 50%;
+}
+
+.checkout-container {
+  /* position: fixed; */
+  text-align: center;
+}
+
+.checkout-container button {
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: var(--primary-text-color);
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
 }

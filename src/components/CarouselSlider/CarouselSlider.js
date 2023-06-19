@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import "./CarouselSlider.css";
+import { useNavigate } from "react-router-dom";
 
 const carouselElements = [
   {
@@ -58,10 +59,19 @@ const CarouselCard = (props) => {
     backdropFilter: ` brightness(50%) saturate(0%) opacity(70%)`,
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="carousel__card" style={style}>
       <p>{props.title}</p>
-      <button className="carousel__card-btn">Shop Now</button>
+      <button
+        onClick={() => {
+          navigate("products");
+        }}
+        className="carousel__card-btn"
+      >
+        Shop Now
+      </button>
     </div>
   );
 };

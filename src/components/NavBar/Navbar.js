@@ -8,9 +8,11 @@ import { BsCart, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import AuthContext from "../../store/auth-context";
+import CartContext from "../../store/cart-context";
 
 const Navbar = () => {
   const authCtx = useContext(AuthContext);
+  const cartCtx = useContext(CartContext);
 
   const location = useLocation();
 
@@ -60,7 +62,10 @@ const Navbar = () => {
             )}
             {!isAuthPage && (
               <NavLink className="app__navbar-link" to={"/cart"}>
-                <BsCart className="icon" size={20} />
+                <div className="cart-icon">
+                  <BsCart className="icon" size={20} />
+                  <span>{cartCtx.totalItems}</span>
+                </div>
               </NavLink>
             )}
             {!isAuthPage && (
