@@ -13,11 +13,8 @@ import Loader from "../../components/Loader/Loader";
 import AuthContext from "../../store/auth-context";
 
 const LoginPage = () => {
-  const { refreshAuth } = useContext(AuthContext);
+ 
   const navigate = useNavigate();
-  const handleRefresh = () => {
-    refreshAuth();
-  };
 
   let errorMessage = "Invalid email";
 
@@ -29,7 +26,6 @@ const LoginPage = () => {
 
   if (data && data.status === "SUCCESS" && data.token) {
     console.log("LOGIN IS SUCCESSFULL");
-    handleRefresh();
     navigate("/");
   }
 

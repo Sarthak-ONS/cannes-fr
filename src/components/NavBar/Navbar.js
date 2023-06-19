@@ -74,12 +74,10 @@ const Navbar = () => {
               </NavLink>
             )}
             {authCtx._id && (
-              <div className="app__navbar-link">
-                <CgProfile
-                  className="icon"
-                  size={20}
-                  onClick={toggleClickHandler}
-                />
+              <div className="app__navbar-link ">
+                <div className="profile-icon" onClick={toggleClickHandler}>
+                  {authCtx.name.slice(0, 1)}
+                </div>
               </div>
             )}
           </div>
@@ -92,8 +90,14 @@ const Navbar = () => {
           className={`toggle-menu ${toggleMenu ? "open" : ""}`}
         >
           <ul>
-            <li key={1}>Orders</li>
-            <li key={2}>Wishlist</li>
+            <li className="toggle-menu__name" key={0}>
+              {authCtx.name}
+            </li>
+            <li className="toggle-menu__email" key={1}>
+              {authCtx.email}
+            </li>
+            <li key={2}>Orders</li>
+            <li key={3}>Wishlist</li>
             <form
               method="GET"
               action={`${`${process.env.REACT_APP_BACKEND_HOST}/auth/logout`}`}

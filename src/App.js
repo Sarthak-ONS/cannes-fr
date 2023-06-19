@@ -8,7 +8,7 @@ import ErrorPage from "./pages/ErrorPage";
 import SignupPage, {
   action as SignupAction,
 } from "./pages/AuthPages/SignupPage";
-import CartPage from "./pages/UserPages/CartPage";
+import CartPage, { loader as CartLoader } from "./pages/UserPages/CartPage";
 
 import { tokenLoader } from "./utils/isAuth";
 import AuthProvider from "./store/AuthProvider";
@@ -47,6 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
+        loader: CartLoader,
         element: <CartPage />,
       },
       {

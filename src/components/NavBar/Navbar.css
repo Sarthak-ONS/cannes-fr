@@ -73,11 +73,13 @@
 .toggle-menu {
   position: fixed;
   z-index: 500;
-  right: 60px;
+  right: 20px;
   top: 60px;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s ease-in-out;
+
+  border-radius: 10px;
 }
 .menu-box.open {
   opacity: 1; /* Full opacity */
@@ -89,6 +91,31 @@
 
 .toggle-menu ul li {
   margin: 0.25rem;
+  padding: 0.25rem;
+}
+.toggle-menu__name {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.toggle-menu__email {
+  font-weight: bold;
+}
+.profile-icon {
+  text-transform: capitalize;
+  color: white;
+  background-color: var(--primary-text-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50%;
+}
+
+.toggle-menu ul li button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.toggle-menu ul li:hover{
+  background-color: #edf2f8;
 }
 
 @media (max-width: 650px) {
