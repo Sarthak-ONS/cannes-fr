@@ -8,9 +8,10 @@
 }
 
 .Products-Page__filterContainer {
+  flex: 0.25;
   background-color: transparent;
   position: static;
-  flex: 0.2;
+  padding: 1rem;
 }
 
 .Products-Page__filterContainer p {
@@ -26,11 +27,6 @@
   display: flex;
   flex-wrap: wrap;
   /* justify-content: space-around; */
-}
-
-.categories-list ul {
-  max-height: 200px;
-  overflow: scroll;
 }
 
 .category-card {

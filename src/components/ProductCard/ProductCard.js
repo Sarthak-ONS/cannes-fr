@@ -9,7 +9,7 @@ const ProductCard = ({
   title,
   price,
   discountedPrice,
-  isOnSale = true,
+  isOnSale = false,
   brand = "Levis",
   addToCartSuccess,
   addToCartFailure,
@@ -32,9 +32,13 @@ const ProductCard = ({
     if (response.ok) {
       addToCartSuccess();
     } else {
-      navigate('/auth/login')
+      navigate("/auth/login");
     }
   };
+
+  if (title.length > 15) {
+    title = title.slice(0, 15);
+  }
 
   return (
     <div className="Product__card">
@@ -45,7 +49,7 @@ const ProductCard = ({
       <div className="Product__card-content">
         <div className="Product__card-details">
           <div className="Product__card-brand">{brand}</div>
-          <div className="Product__card-title">{id}</div>
+          <div className="Product__card-title">{title}</div>
           <div className="Product__card-prices">
             <div className="Product__card-prices_price1">Rs. {price}</div>
             {isOnSale && (

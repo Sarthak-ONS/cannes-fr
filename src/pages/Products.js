@@ -8,6 +8,7 @@ import MuiAlert from "@mui/material/Alert";
 import ProductCard from "../components/ProductCard/ProductCard";
 import SelectCategoryCard from "../components/SelectCategoryCard/SelectCategoryCard";
 import CartContext from "../store/cart-context";
+import MySlider from "../components/FilterSlider/Slider";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -19,6 +20,7 @@ const ProductsPage = () => {
   const data = useLoaderData();
 
   const [setselectedCategories, setSetselectedCategories] = useState([]);
+  const [priceFilter, setPriceFilter] = useState(10000);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -43,6 +45,10 @@ const ProductsPage = () => {
   };
   const addToCartFailure = () => {};
 
+  const onSliderFilterChangeHandler = (value) => {
+    setPriceFilter(value);
+  };
+
   return (
     <div className="Products-Page">
       <div className="Products-Page__filterContainer">
@@ -61,6 +67,10 @@ const ProductsPage = () => {
             ))}
           </ul>
         </div>
+        <div className="categories-list">
+          <h4>Prices</h4>
+          <MySlider onSliderFilterChange={onSliderFilterChangeHandler} />
+        </div>
       </div>
       <div className="Products-Page__ProductContainer">
         <ul>
@@ -70,6 +80,7 @@ const ProductsPage = () => {
                 setselectedCategories.length === 0 ||
                 setselectedCategories.includes(item.category)
             )
+            .filter((item) => item.price < priceFilter)
             .map((item) => (
               <ProductCard
                 key={item._id}
