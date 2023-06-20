@@ -64,17 +64,17 @@ const CartPage = () => {
         </div>
       </div>
       <div className="checkout-container">
-        <div class="card coupons">
-          <label class="title">Apply coupons</label>
-          <form class="form">
-            <input
-              type="text"
-              placeholder="Apply your coupons here"
-              class="input_field"
-            />
+        <form class="discount-form">
+          <div className="input-box">
+            <input type="text" value={"DeliveryCharge"} disabled />
+            <p>Rs. 150</p>
+          </div>
+          <br />
+          <div className="input-box">
+            <input type="text" placeholder="Apply your coupons here" />
             <button>Apply</button>
-          </form>
-        </div>
+          </div>
+        </form>
         <button className="checkout-btn">Rs. {totalPrice} Checkout</button>
       </div>
     </div>
