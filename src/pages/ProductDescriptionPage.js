@@ -48,7 +48,7 @@ const ProductDescriptionPage = () => {
             <button
               onClick={() => {
                 cartCtx.qtyChangeHandler(data.product._id, true);
-                setOpen(true)
+                setOpen(true);
               }}
               className="add-to-cart-cta"
               type="button"
@@ -57,6 +57,26 @@ const ProductDescriptionPage = () => {
             </button>
           </p>
         </div>
+      </div>
+      <br />
+      <br />
+      <div className="ProductPageReviews">
+        <h2>Product Reviews</h2>
+        <ul>
+          {data.product.reviews &&
+            data.product.reviews.map((item) => (
+              <li className="ProductReview-card">
+                <p className="ProductReview-card__username">
+                  {item.userId.name}
+                </p>
+                <p className="ProductReview-card__text">{item.text}</p>
+              </li>
+            ))}
+        </ul>
+        <ul>
+          {!data.product.reviews ||
+            (data.product.reviews.length === 0 && <p>No Reviews Added</p>)}
+        </ul>
       </div>
 
       <Snackbar
