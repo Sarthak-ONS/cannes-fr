@@ -13,6 +13,9 @@ import CartPage from "./pages/UserPages/CartPage";
 import { tokenLoader } from "./utils/isAuth";
 import AuthProvider from "./store/AuthProvider";
 import CartProvider from "./store/CartProvider";
+import ProductDescriptionPage, {
+  loader as ProductDescriptionPageLoader,
+} from "./pages/ProductDescriptionPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,11 @@ const router = createBrowserRouter([
         path: "products",
         loader: ProductLoader,
         element: <ProductsPage />,
+      },
+      {
+        path: "product/:productId",
+        loader: ProductDescriptionPageLoader,
+        element: <ProductDescriptionPage />,
       },
       {
         path: "auth",

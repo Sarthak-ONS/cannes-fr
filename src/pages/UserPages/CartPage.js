@@ -64,6 +64,7 @@ const CartPage = () => {
         </div>
       </div>
       <div className="checkout-container">
+        <p>Delivery Charge : Rs 150</p>
         <button>Rs. {totalPrice} Checkout</button>
       </div>
     </div>

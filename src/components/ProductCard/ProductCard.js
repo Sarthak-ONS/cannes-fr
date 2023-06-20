@@ -41,7 +41,12 @@ const ProductCard = ({
   }
 
   return (
-    <div className="Product__card">
+    <div
+      className="Product__card"
+      onClick={() => {
+        navigate("/product/" + id);
+      }}
+    >
       {isOnSale && <div className="Product__card-sales-tag">Sale</div>}
       <div className="Product__card-img">
         <img alt="Produc" src={url} />
@@ -60,7 +65,7 @@ const ProductCard = ({
             <button
               onClick={addtoCardButtonClickHandler}
               className="add-to-cart"
-              type="submit"
+              type="button"
             >
               Add to Cart
             </button>
