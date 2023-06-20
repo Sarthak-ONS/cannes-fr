@@ -30,13 +30,13 @@ const CartPage = () => {
 
   return (
     <div className="Cartpage-wrapper">
-      <div className="Cartpage-heading__title">
-        {authCtx.name}'s <span>Cart</span>
-        <div className="Cartpage-heading__title-timeline">
-          Cart · Checkout · Payment
-        </div>
-      </div>
       <div className="Cartpage">
+        <div className="Cartpage-heading__title">
+          {authCtx.name}'s <span>Cart</span>
+          <div className="Cartpage-heading__title-timeline">
+            Cart · Checkout · Payment
+          </div>
+        </div>
         <div className="Cartpage-items">
           <ul>
             {cartCtx.items &&
@@ -64,8 +64,18 @@ const CartPage = () => {
         </div>
       </div>
       <div className="checkout-container">
-        <p>Delivery Charge : Rs 150</p>
-        <button>Rs. {totalPrice} Checkout</button>
+        <div class="card coupons">
+          <label class="title">Apply coupons</label>
+          <form class="form">
+            <input
+              type="text"
+              placeholder="Apply your coupons here"
+              class="input_field"
+            />
+            <button>Apply</button>
+          </form>
+        </div>
+        <button className="checkout-btn">Rs. {totalPrice} Checkout</button>
       </div>
     </div>
   );

@@ -67,6 +67,7 @@ const ProductsPage = () => {
             ))}
           </ul>
         </div>
+        <br />
         <div className="categories-list">
           <h4>Prices</h4>
           <MySlider onSliderFilterChange={onSliderFilterChangeHandler} />

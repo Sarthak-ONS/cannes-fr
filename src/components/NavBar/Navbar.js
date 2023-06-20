@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 import logo from "../../Assets/logo.png";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BsCart, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
@@ -19,6 +19,8 @@ const Navbar = () => {
   const pathName = location.pathname;
 
   const isAuthPage = pathName.includes("auth");
+
+  const navigate = useNavigate();
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -95,14 +97,22 @@ const Navbar = () => {
           className={`toggle-menu ${toggleMenu ? "open" : ""}`}
         >
           <ul>
-            <li className="toggle-menu__name" key={0}>
+            <div className="toggle-menu__name" key={0}>
               {authCtx.name}
-            </li>
-            <li className="toggle-menu__email" key={1}>
+            </div>
+            <div className="toggle-menu__email" key={1}>
               {authCtx.email}
+            </div>
+            <li
+              key={2}
+              onClick={() => {
+                navigate("account");
+              }}
+            >
+              Account
             </li>
-            <li key={2}>Orders</li>
-            <li key={3}>Wishlist</li>
+            <li key={3}>Orders</li>
+            <li key={4}>Wishlist</li>
             <form
               method="GET"
               action={`${`${process.env.REACT_APP_BACKEND_HOST}/auth/logout`}`}

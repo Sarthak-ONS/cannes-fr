@@ -16,6 +16,10 @@ import CartProvider from "./store/CartProvider";
 import ProductDescriptionPage, {
   loader as ProductDescriptionPageLoader,
 } from "./pages/ProductDescriptionPage";
+import ProfilePage, {
+  loader as ProfilePageLoader,
+  action as ProfilePageAction,
+} from "./pages/UserPages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +61,12 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <CartPage />,
+      },
+      {
+        path: "account",
+        loader: ProfilePageLoader,
+        action: ProfilePageAction,
+        element: <ProfilePage />,
       },
       {
         path: "/logout",
