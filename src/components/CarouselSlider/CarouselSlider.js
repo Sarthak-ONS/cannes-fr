@@ -30,7 +30,7 @@ const carouselElements = [
   },
 ];
 
-const CarouselSlider = () => {
+const CarouselSlider = (imagesArray = carouselElements) => {
   const settings = {
     // dots: true,
     swipe: true,

@@ -44,7 +44,7 @@ const ProductCard = ({
     <div
       className="Product__card"
       onClick={() => {
-        navigate("/product/" + id);
+        navigate("/products/" + id);
       }}
     >
       {isOnSale && <div className="Product__card-sales-tag">Sale</div>}
