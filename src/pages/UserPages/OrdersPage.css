@@ -36,3 +36,12 @@
 .OrderCard-productsList {
   list-style: none;
 }
+
+.Download-Invoice-btn {
+  background-color: var(--primary-text-color);
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}

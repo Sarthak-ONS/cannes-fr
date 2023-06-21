@@ -94,6 +94,13 @@
   background-color: transparent;
 }
 
+.write-review-btn {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 @media (max-width: 650px) {
   .ProductDescriptionPage {
     flex-direction: column;

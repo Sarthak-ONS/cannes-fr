@@ -38,9 +38,15 @@ const OrdersPage = () => {
               })}
             </div>
             <hr></hr>
-            <div>Rs.{item.totalAmount}</div>
+            <div >Rs.{item.totalAmount}</div>
             <div>
               {item.shippingAddress.street}, {item.shippingAddress.city}
+            </div>
+            <br />
+            <div>
+              <button type="button" className="Download-Invoice-btn">
+                Download Invoice
+              </button>
             </div>
           </div>
         ))}

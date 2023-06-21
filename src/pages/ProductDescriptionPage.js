@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
+import Modal from "../components/Modals/Modal";
+
 import "./ProductDescriptionPage.css";
 import CartContext from "../store/cart-context";
 
@@ -13,6 +15,8 @@ const ProductDescriptionPage = () => {
   const data = useLoaderData();
   const cartCtx = useContext(CartContext);
   const [open, setOpen] = useState(false);
+
+  const [showModal, setshowModal] = useState(false);
 
   console.log(data.product);
 
@@ -59,9 +63,33 @@ const ProductDescriptionPage = () => {
         </div>
       </div>
       <br />
+
+      <p
+        className="write-review-btn"
+        onClick={() => {
+          setshowModal(true);
+        }}
+      >
+        Write a review
+      </p>
       <br />
       <div className="ProductPageReviews">
         <h2>Product Reviews</h2>
+        {showModal && (
+          <Modal
+            onClose={() => {
+              setshowModal(false);
+            }}
+          >
+            <h2>Add a Review</h2>
+            <form onSubmit={() => {}}>
+              <label htmlFor="reviewText" id="reviewLabel">
+                Please enter your review
+              </label>
+              <textarea />
+            </form>
+          </Modal>
+        )}
         <ul>
           {data.product.reviews &&
             data.product.reviews.map((item) => (
