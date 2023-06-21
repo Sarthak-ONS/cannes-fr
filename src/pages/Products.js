@@ -119,7 +119,22 @@ const ProductsPage = () => {
 };
 
 export async function loader({ request, params }) {
-  const response = await fetch(process.env.REACT_APP_BACKEND_HOST + "/product");
+  console.log(request.url);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchKeyword = urlParams.get("search");
+
+  console.log(searchKeyword);
+
+  let u = "?q=";
+
+  if (searchKeyword && searchKeyword.length > 3) {
+    u = u + searchKeyword;
+  }
+
+  const response = await fetch(
+    process.env.REACT_APP_BACKEND_HOST + "/product" + u
+  );
 
   if (!response.ok) {
     const data = { message: "Coult not fetch Products" };

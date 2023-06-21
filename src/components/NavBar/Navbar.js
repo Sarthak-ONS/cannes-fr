@@ -60,7 +60,18 @@ const Navbar = () => {
           </div>
           <div className="app__navbar-links">
             {!isAuthPage && (
-              <input className="search-input" placeholder="Search" />
+              <input
+                className="search-input"
+                placeholder="Search"
+                name="q"
+                onKeyDown={(event) => {
+                  console.log(event.key);
+                  if (event.key === "Enter" && event.target.value.length > 3) {
+                    console.log(event.target.value);
+                    navigate("/products" + "?search=" + event.target.value);
+                  }
+                }}
+              />
             )}
             {!isAuthPage && (
               <NavLink className="app__navbar-link" to={"/cart"}>
@@ -70,11 +81,7 @@ const Navbar = () => {
                 </div>
               </NavLink>
             )}
-            {!isAuthPage && (
-              <NavLink className="app__navbar-link" to={"/cart"}>
-                <AiOutlineHeart className="icon" size={20} />
-              </NavLink>
-            )}
+
             {!isAuthPage && !authCtx._id && (
               <NavLink className="app__navbar-link" to={"/auth/login"}>
                 <BsPerson className="icon" size={20} />
@@ -111,8 +118,15 @@ const Navbar = () => {
             >
               Account
             </li>
-            <li key={3}>Orders</li>
-            <li key={4}>Wishlist</li>
+            <li
+              key={3}
+              onClick={() => {
+                navigate("orders");
+              }}
+            >
+              Orders
+            </li>
+
             <form
               method="GET"
               action={`${`${process.env.REACT_APP_BACKEND_HOST}/auth/logout`}`}

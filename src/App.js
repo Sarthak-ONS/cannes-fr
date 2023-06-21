@@ -20,6 +20,9 @@ import ProfilePage, {
   loader as ProfilePageLoader,
   action as ProfilePageAction,
 } from "./pages/UserPages/Profile";
+import OrdersPage, {
+  loader as OrdersLoader,
+} from "./pages/UserPages/OrdersPage";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +71,7 @@ const router = createBrowserRouter([
         action: ProfilePageAction,
         element: <ProfilePage />,
       },
+      { path: "orders", element: <OrdersPage />, loader: OrdersLoader },
       {
         path: "/logout",
         action: LogoutAction,

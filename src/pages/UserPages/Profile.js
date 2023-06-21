@@ -53,27 +53,27 @@ const ProfilePage = () => {
             <div className="success-msg">Address Updated</div>
           )}
           <input
-            defaultvalue={data.user.address && data.user.address.street}
+            defaultValue={data.user.address && data.user.address.street}
             name="street"
             placeholder="Street"
           />
           <input
-            defaultvalue={data.user.address && data.user.address.city}
+            defaultValue={data.user.address && data.user.address.city}
             name="city"
             placeholder="City"
           />
           <input
-            defaultvalue={data.user.address && data.user.address.postalCode}
+            defaultValue={data.user.address && data.user.address.postalCode}
             name="postalCode"
             placeholder="Postal Code"
           />
           <input
-            defaultvalue={data.user.address && data.user.address.state}
+            defaultValue={data.user.address && data.user.address.state}
             name="state"
             placeholder="State"
           />
           <input
-            defaultvalue={data.user.address && data.user.address.country}
+            defaultValue={data.user.address && data.user.address.country}
             name="country"
             placeholder="Country"
           />

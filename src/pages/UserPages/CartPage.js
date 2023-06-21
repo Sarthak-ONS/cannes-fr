@@ -38,6 +38,10 @@ const CartPage = () => {
     cartCtx.applyDiscountHandler(couponCode);
   };
 
+  const checkoutHandler = () => {
+    cartCtx.checkoutHandler();
+  };
+
   return (
     <div className="Cartpage-wrapper">
       <div className="Cartpage">
@@ -102,7 +106,7 @@ const CartPage = () => {
             cartCtx.couponCode === "FLAT50" &&
             "Discount Applied"}
         </form>
-        <button className="checkout-btn">
+        <button onClick={checkoutHandler} className="checkout-btn">
           Rs. {cartCtx.totalPrice} Checkout
         </button>
       </div>

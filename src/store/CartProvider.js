@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import CartContext from "./cart-context";
 import { getAuthToken } from "../utils/isAuth";
+import { redirect } from "react-router-dom";
 
 const CartProvider = (props) => {
   const [cart, setcart] = useState({});
@@ -107,6 +108,31 @@ const CartProvider = (props) => {
     }
   };
 
+  const checkoutHandler = async () => {
+    console.log("CHECKOUTING THE CART");
+    let url = `${process.env.REACT_APP_BACKEND_HOST}/cart/checkout`;
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getAuthToken(),
+        },
+      });
+
+      console.log(response);
+
+      if (response.ok) {
+        const data = await response.json();
+        return redirect("/orders");
+      } else {
+      }
+    } catch (error) {
+      console.log(error, "This is the error from catch block");
+    }
+  };
+
   const cartContext = {
     ...cart,
     totalItems,
@@ -115,6 +141,7 @@ const CartProvider = (props) => {
     setrefreshCart,
     qtyChangeHandler,
     applyDiscountHandler,
+    checkoutHandler,
   };
 
   return (
