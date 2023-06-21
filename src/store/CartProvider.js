@@ -80,6 +80,33 @@ const CartProvider = (props) => {
     }
   };
 
+  const applyDiscountHandler = async (couponCode) => {
+    let url = `${process.env.REACT_APP_BACKEND_HOST}/cart/applyDiscount`;
+
+    console.log(url, couponCode);
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getAuthToken(),
+        },
+        body: JSON.stringify({ couponCode: couponCode }),
+      });
+
+      console.log(response);
+
+      if (response.ok) {
+        const data = await response.json();
+        setrefreshCart(true);
+      } else {
+      }
+    } catch (error) {
+      console.log(error, "This is the error from catch block");
+    }
+  };
+
   const cartContext = {
     ...cart,
     totalItems,
@@ -87,6 +114,7 @@ const CartProvider = (props) => {
     setcart,
     setrefreshCart,
     qtyChangeHandler,
+    applyDiscountHandler,
   };
 
   return (

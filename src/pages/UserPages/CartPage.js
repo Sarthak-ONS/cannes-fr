@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./CartPage.css";
 
 import { GrFormAdd } from "react-icons/gr";
@@ -13,6 +13,7 @@ const CartPage = () => {
   const authCtx = useContext(AuthContext);
   const cartCtx = useContext(CartContext);
 
+  const [couponCode, setCouponCode] = useState(cartCtx.couponCode);
   console.log(cartCtx, "This is the cartCtx bete the saww");
 
   if (!cartCtx.items || cartCtx.items.length === 0)
@@ -27,6 +28,15 @@ const CartPage = () => {
   cartCtx.items.forEach(({ product, quantity }) => {
     totalPrice = totalPrice + product.price * quantity;
   });
+
+  const couponChangeHandler = (event) => {
+    setCouponCode(event.target.value);
+  };
+
+  const onApplyDiscountHandler = (e) => {
+    console.log(couponCode);
+    cartCtx.applyDiscountHandler(couponCode);
+  };
 
   return (
     <div className="Cartpage-wrapper">
@@ -65,17 +75,36 @@ const CartPage = () => {
       </div>
       <div className="checkout-container">
         <form class="discount-form">
+          <p>All prices includes GST</p>
+          <div className="input-box">
+            <input type="text" value={"Total"} disabled />
+            <p>Rs. {totalPrice}</p>
+          </div>
+          <br />
           <div className="input-box">
             <input type="text" value={"DeliveryCharge"} disabled />
             <p>Rs. 150</p>
           </div>
           <br />
           <div className="input-box">
-            <input type="text" placeholder="Apply your coupons here" />
-            <button>Apply</button>
+            <input
+              defaultValue={cartCtx.couponCode}
+              onChange={couponChangeHandler}
+              type="text"
+              placeholder="Apply your coupons here"
+              name="couponCode"
+            />
+            <button type="button" onClick={onApplyDiscountHandler}>
+              {cartCtx.couponCode ? "Applied" : "Apply"}
+            </button>
           </div>
+          {cartCtx.couponCode &&
+            cartCtx.couponCode === "FLAT50" &&
+            "Discount Applied"}
         </form>
-        <button className="checkout-btn">Rs. {totalPrice} Checkout</button>
+        <button className="checkout-btn">
+          Rs. {cartCtx.totalPrice} Checkout
+        </button>
       </div>
     </div>
   );
