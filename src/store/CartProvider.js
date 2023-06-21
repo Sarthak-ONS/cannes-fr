@@ -125,7 +125,7 @@ const CartProvider = (props) => {
 
       if (response.ok) {
         const data = await response.json();
-        return redirect("/orders");
+        redirect("/orders");
       } else {
       }
     } catch (error) {

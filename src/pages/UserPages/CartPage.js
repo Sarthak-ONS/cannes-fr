@@ -106,9 +106,11 @@ const CartPage = () => {
             cartCtx.couponCode === "FLAT50" &&
             "Discount Applied"}
         </form>
-        <button onClick={checkoutHandler} className="checkout-btn">
-          Rs. {cartCtx.totalPrice} Checkout
-        </button>
+        <form action={`${process.env.REACT_APP_BACKEND_HOST}/cart/checkout`} method="GET">
+          <button type="submit" className="checkout-btn">
+            Rs. {cartCtx.totalPrice} Checkout
+          </button>
+        </form>
       </div>
     </div>
   );
