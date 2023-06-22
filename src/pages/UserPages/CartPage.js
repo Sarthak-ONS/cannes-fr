@@ -15,7 +15,6 @@ const CartPage = () => {
   const cartCtx = useContext(CartContext);
 
   const [couponCode, setCouponCode] = useState(cartCtx.couponCode);
-  console.log(cartCtx, "This is the cartCtx bete the saww");
 
   if (!cartCtx.items || cartCtx.items.length === 0)
     return (
@@ -78,7 +77,11 @@ const CartPage = () => {
           </ul>
         </div>
       </div>
-      <div className="checkout-container">
+      <motion.div
+        whileInView={{ opacity: [0, 1], x: [50, 0] }}
+        transition={{ duration: 1 }}
+        className="checkout-container"
+      >
         <form className="discount-form">
           <p style={{ fontWeight: "bold" }}>All prices includes GST</p>
           <br />
@@ -116,7 +119,7 @@ const CartPage = () => {
             Rs. {cartCtx.totalPrice} Checkout
           </button>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -135,7 +138,7 @@ const CartProductCard = ({
 
   return (
     <motion.div
-      whileInView={{ opacity: [0, 1] }}
+      whileInView={{ opacity: [0, 1], y: [-50, 0] }}
       transition={{ duration: 0.5 }}
       className="CartProductCard"
     >

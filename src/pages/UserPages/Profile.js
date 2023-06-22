@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { getAuthToken } from "../../utils/isAuth";
 import {
   Form,
@@ -32,8 +33,13 @@ const ProfilePage = () => {
 
   return (
     <div className="ProfilePage">
-      <div className="ProfilePage-heading"></div>
-      <div className="ProfilePage-name">{data.user.name}</div>
+      <motion.div
+        whileInView={{ opacity: [0, 1], y: [-50, 0], x: [50, 0] }}
+        transition={{ duration: 1 }}
+        className="ProfilePage-name"
+      >
+        {data.user.name}
+      </motion.div>
       <div className="ProfilePage-email">
         <p>{data.user.email}</p>
         <div>
@@ -42,7 +48,11 @@ const ProfilePage = () => {
       </div>
       <br />
       <br />
-      <div className="Address-Section">
+      <motion.div
+        whileInView={{ opacity: [0, 1] }}
+        transition={{ duration: 1 }}
+        className="Address-Section"
+      >
         <h2>Your Adress</h2>
         <Form
           method={data.user.address ? "PUT" : "POST"}
@@ -81,7 +91,7 @@ const ProfilePage = () => {
             {isSubmitting ? <Loader /> : <> Add Address</>}
           </button>
         </Form>
-      </div>
+      </motion.div>
     </div>
   );
 };

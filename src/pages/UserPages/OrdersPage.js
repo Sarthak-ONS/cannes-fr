@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { saveAs } from "file-saver";
 import "./OrdersPage.css";
 import { getAuthToken } from "../../utils/isAuth";
@@ -22,7 +23,7 @@ const OrdersPage = () => {
 
     if (response.ok) {
       const blob = await response.blob();
-      saveAs(blob, 'invoice.pdf');
+      saveAs(blob, "invoice.pdf");
     }
   };
 
@@ -34,7 +35,12 @@ const OrdersPage = () => {
           data.orders
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map((item) => (
-              <div className="OrderCard" key={item._id}>
+              <motion.div
+                whileInView={{ opacity: [0, 1] }}
+                transition={{ duration: 1 }}
+                className="OrderCard"
+                key={item._id}
+              >
                 <div className="OrderCard__orderId">
                   <h5>Order Id : </h5>
                   <div> {item._id}</div>
@@ -73,7 +79,7 @@ const OrdersPage = () => {
                     Download Invoice
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
       </ul>
     </div>

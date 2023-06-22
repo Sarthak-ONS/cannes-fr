@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { CiBoxes, CiDeliveryTruck, CiHotdog, CiMedal } from "react-icons/ci";
 
 import CarouselSlider from "../components/CarouselSlider/CarouselSlider";
@@ -92,7 +93,11 @@ const HomePage = () => {
 
       {/* Discount Offer Section */}
 
-      <div className="Discount__Offer">
+      <motion.div
+        whileInView={{ opacity: [0, 1], y: [50, 0] }}
+        transition={{ duration: 2 }}
+        className="Discount__Offer"
+      >
         <div className="Discount__Offer-image">
           <img
             alt="Dis"
@@ -108,12 +113,12 @@ const HomePage = () => {
             <button>Grab it</button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Discount Offer Section Ends */}
 
       {/* Newsletter Subscription Starts */}
-      <div className="nwsltrSubscription">
+      <motion.div className="nwsltrSubscription">
         <div className="nwsltrSubscription__heading">
           Subscribe to our newsletter to get updates
           <br /> to our latest collections
@@ -127,7 +132,7 @@ const HomePage = () => {
             <button>Subscribe</button>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* Newsletter Subscription Ends */}
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -38,17 +39,24 @@ const CarouselCard = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="carousel__card" style={style}>
-      <p>{props.title}</p>
-      <button
-        onClick={() => {
-          navigate("products");
-        }}
-        className="carousel__card-btn"
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="carousel__card"
+        style={style}
       >
-        Shop Now
-      </button>
-    </div>
+        <p>{props.title}</p>
+        <button
+          onClick={() => {
+            navigate("products");
+          }}
+          className="carousel__card-btn"
+        >
+          Shop Now
+        </button>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

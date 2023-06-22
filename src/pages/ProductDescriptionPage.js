@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef } from "react";
-import { redirect, useLoaderData, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -24,13 +25,9 @@ const ProductDescriptionPage = () => {
   const authCtx = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-
   const [showModal, setshowModal] = useState(false);
-
-  const [showReviewModal, setshowReviewModal] = useState(false);
   const [rating, setRating] = useState();
   const [isReviewErrorText, setIsReviewErrorText] = useState(false);
-  const [reviewError, setReviewError] = useState("");
 
   const [review, setReview] = useState();
 
@@ -89,12 +86,21 @@ const ProductDescriptionPage = () => {
           <ul>
             {data.product.imageUrls.map((item) => (
               <div className="item-image" key={item.id}>
-                <img src={item.secure_url} alt="im"></img>
+                <motion.img
+                  whileInView={{ opacity: [0, 1], x: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                  src={item.secure_url}
+                  alt="im"
+                ></motion.img>
               </div>
             ))}
           </ul>
         </div>
-        <div className="ProductDescriptionPage-content">
+        <motion.div
+          whileInView={{ opacity: [0, 1], y: [50, 0] }}
+          transition={{ duration: 0.5 }}
+          className="ProductDescriptionPage-content"
+        >
           <h2 className="ProductDescriptionPage-content__title">
             {data && data.product && data.product.name}
           </h2>
@@ -110,7 +116,8 @@ const ProductDescriptionPage = () => {
           <h4>Brand: {data && data.product && data.product.brand}</h4>
           <h5>{data && data.product && data.product.description}</h5>
           <p>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
               onClick={() => {
                 if (authCtx.email) {
                   cartCtx.qtyChangeHandler(data.product._id, true);
@@ -123,19 +130,20 @@ const ProductDescriptionPage = () => {
               type="button"
             >
               Add to Cart
-            </button>
+            </motion.button>
             {authCtx.email && (
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
                 className="add-to-cart-cta"
                 onClick={() => {
                   setshowModal(true);
                 }}
               >
                 Write a review
-              </button>
+              </motion.button>
             )}
           </p>
-        </div>
+        </motion.div>
       </div>
       <br />
       <br />
@@ -166,12 +174,16 @@ const ProductDescriptionPage = () => {
         <ul>
           {data.product.reviews &&
             data.product.reviews.map((item) => (
-              <li className="ProductReview-card">
+              <motion.li
+                whileInView={{ opacity: [0, 1], x: [-50, 0] }}
+                transition={{ duration: 0.5 }}
+                className="ProductReview-card"
+              >
                 <p className="ProductReview-card__username">
                   {item.userId.name}
                 </p>
                 <p className="ProductReview-card__text">{item.text}</p>
-              </li>
+              </motion.li>
             ))}
         </ul>
         <ul>

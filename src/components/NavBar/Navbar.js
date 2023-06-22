@@ -1,14 +1,12 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import "./Navbar.css";
-
 import logo from "../../Assets/logo.png";
-
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BsCart, BsPerson } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
 import AuthContext from "../../store/auth-context";
 import CartContext from "../../store/cart-context";
+
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const authCtx = useContext(AuthContext);
@@ -99,7 +97,11 @@ const Navbar = () => {
       </nav>
 
       {toggleMenu && (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          exit={{ opacity: [0, 0.5, 1] }}
+          animate={{ opacity: 1 }}
+          transition={{ x: [-100, 0] }}
           ref={menuRef}
           className={`toggle-menu ${toggleMenu ? "open" : ""}`}
         >
@@ -144,7 +146,7 @@ const Navbar = () => {
               </li>
             </form>
           </ul>
-        </div>
+        </motion.div>
       )}
     </>
   );

@@ -44,8 +44,9 @@ const ProductCard = ({
 
   return (
     <motion.div
-      whileInView={{ opacity: [0, 1] }}
-      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+      whileInView={{ opacity: [0, 1], x: [-10, 0], y: [-10, 0] }}
+      transition={{ duration: 0.5, delayChildren: 0.5 }}
       className="Product__card"
       onClick={() => {
         navigate("/products/" + id);
@@ -53,7 +54,13 @@ const ProductCard = ({
     >
       {isOnSale && <div className="Product__card-sales-tag">Sale</div>}
       <div className="Product__card-img">
-        <img alt="Produc" src={url} />
+        <motion.img
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100, opacity: 0 }}
+          alt="Produc"
+          src={url}
+        />
       </div>
       <div className="Product__card-content">
         <div className="Product__card-details">
