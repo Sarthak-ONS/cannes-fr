@@ -1,5 +1,5 @@
 import React from "react";
-
+import { saveAs } from "file-saver";
 import "./OrdersPage.css";
 import { getAuthToken } from "../../utils/isAuth";
 import { useLoaderData } from "react-router-dom";
@@ -8,48 +8,73 @@ const OrdersPage = () => {
   const data = useLoaderData();
   console.log(data.orders);
 
+  const downloadInvoiceHandler = async (id) => {
+    const response = await fetch(
+      process.env.REACT_APP_BACKEND_HOST + "/user/order/" + id + "/invoice",
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + getAuthToken(),
+        },
+      }
+    );
+
+    if (response.ok) {
+      const blob = await response.blob();
+      saveAs(blob, 'invoice.pdf');
+    }
+  };
+
   return (
     <div className="OrdersPage">
       <h1 style={{ textAlign: "center" }}>Your orders</h1>
       <ul>
-        {data.orders.map((item) => (
-          <div className="OrderCard" key={item._id}>
-            <div className="OrderCard__orderId">
-              <h5>Order Id : </h5>
-              <div> {item._id}</div>
-            </div>
-            <div>{convertUtctoLocal(item.createdAt)}</div>
-            <div className="OrderCard__status">
-              <h5>Status : </h5>
-              <div> {item.status}</div>
-            </div>
-            <hr></hr>
-            <div className="OrderCard-productsList">
-              <h5>Products</h5>
-              {item.products.map((item) => {
-                if (item.product.name.length > 15) {
-                  item.product.name = item.product.name.substring(0, 23);
-                }
-                return (
-                  <li>
-                    {item.product.name} x {item.quantity}
-                  </li>
-                );
-              })}
-            </div>
-            <hr></hr>
-            <div >Rs.{item.totalAmount}</div>
-            <div>
-              {item.shippingAddress.street}, {item.shippingAddress.city}
-            </div>
-            <br />
-            <div>
-              <button type="button" className="Download-Invoice-btn">
-                Download Invoice
-              </button>
-            </div>
-          </div>
-        ))}
+        {data.orders &&
+          data.orders
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((item) => (
+              <div className="OrderCard" key={item._id}>
+                <div className="OrderCard__orderId">
+                  <h5>Order Id : </h5>
+                  <div> {item._id}</div>
+                </div>
+                <div>{convertUtctoLocal(item.createdAt)}</div>
+                <div className="OrderCard__status">
+                  <h5>Status : </h5>
+                  <div> {item.status}</div>
+                </div>
+                <hr></hr>
+                <div className="OrderCard-productsList">
+                  <h5>Products</h5>
+                  {item.products.map((item) => {
+                    if (item.product.name.length > 15) {
+                      item.product.name = item.product.name.substring(0, 23);
+                    }
+                    return (
+                      <li>
+                        {item.product.name} x {item.quantity}
+                      </li>
+                    );
+                  })}
+                </div>
+                <hr></hr>
+                <div>Rs.{item.totalAmount}</div>
+                <div>
+                  {item.shippingAddress.street}, {item.shippingAddress.city}
+                </div>
+                <br />
+                <div>
+                  <button
+                    type="button"
+                    className="Download-Invoice-btn"
+                    onClick={downloadInvoiceHandler.bind(null, item._id)}
+                  >
+                    Download Invoice
+                  </button>
+                </div>
+              </div>
+            ))}
       </ul>
     </div>
   );

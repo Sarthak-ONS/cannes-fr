@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useLoaderData } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,12 +11,19 @@ import Modal from "../components/Modals/Modal";
 import "./ProductDescriptionPage.css";
 import CartContext from "../store/cart-context";
 
+import { getAuthToken } from "../utils/isAuth";
+
 const ProductDescriptionPage = () => {
   const data = useLoaderData();
+  const reviewtextRef = useRef();
   const cartCtx = useContext(CartContext);
   const [open, setOpen] = useState(false);
 
   const [showModal, setshowModal] = useState(false);
+  const [isReviewErrorText, setIsReviewErrorText] = useState(false);
+  const [reviewError, setReviewError] = useState("");
+
+  const [review, setReview] = useState();
 
   console.log(data.product);
 
@@ -26,6 +33,39 @@ const ProductDescriptionPage = () => {
     }
 
     setOpen(false);
+  };
+
+  const reviewFormHandler = async (e) => {
+    e.preventDefault();
+
+    console.log(reviewtextRef.current.value);
+
+    if (!reviewtextRef.current.value) return;
+
+    const response = await fetch(
+      process.env.REACT_APP_BACKEND_HOST +
+        "/product/" +
+        data.product._id +
+        "/review",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getAuthToken(),
+        },
+        body: JSON.stringify({ text: reviewtextRef.current.value }),
+      }
+    );
+
+    const jObj = await response.json();
+
+    if (response.ok) {
+      setshowModal(false);
+    } else {
+      setIsReviewErrorText(true);
+      setReview(jObj.message);
+    }
   };
 
   return (
@@ -59,19 +99,18 @@ const ProductDescriptionPage = () => {
             >
               Add to Cart
             </button>
+            <button
+              className="add-to-cart-cta"
+              onClick={() => {
+                setshowModal(true);
+              }}
+            >
+              Write a review
+            </button>
           </p>
         </div>
       </div>
       <br />
-
-      <p
-        className="write-review-btn"
-        onClick={() => {
-          setshowModal(true);
-        }}
-      >
-        Write a review
-      </p>
       <br />
       <div className="ProductPageReviews">
         <h2>Product Reviews</h2>
@@ -82,11 +121,16 @@ const ProductDescriptionPage = () => {
             }}
           >
             <h2>Add a Review</h2>
-            <form onSubmit={() => {}}>
+            <form className="review-form" onSubmit={reviewFormHandler}>
+              {isReviewErrorText && <p>{review}</p>}
               <label htmlFor="reviewText" id="reviewLabel">
                 Please enter your review
               </label>
-              <textarea />
+              <textarea
+                ref={reviewtextRef}
+                placeholder="Write review in 150 words"
+              />
+              <button type="submit">Publish</button>
             </form>
           </Modal>
         )}
