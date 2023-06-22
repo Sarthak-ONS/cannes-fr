@@ -68,12 +68,12 @@
   margin: 0.5rem;
 }
 .ProductPageReviews {
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .ProductPageReviews h2 {
@@ -89,7 +89,6 @@
   border-radius: 5px;
   padding: 1rem 2rem;
   background-color: aliceblue;
-  min-width: 400px;
 }
 
 .ProductReview-card .ProductReview-card__username {

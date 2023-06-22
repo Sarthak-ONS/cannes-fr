@@ -162,3 +162,21 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .Cartpage-wrapper {
+    flex-direction: column;
+  }
+  .Cartpage {
+    width: auto;
+  }
+
+  .Cartpage-heading__title {
+  }
+
+  .CartProductCard {
+    min-width: none;
+    max-width: none;
+    margin: 0 0.5rem;
+  }
+}
