@@ -3,6 +3,8 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../../utils/isAuth";
 
+import { motion } from "framer-motion";
+
 const ProductCard = ({
   id,
   url,
@@ -36,12 +38,14 @@ const ProductCard = ({
     }
   };
 
-  if (title.length > 15) {
+  if (title && title.length > 15) {
     title = title.slice(0, 15);
   }
 
   return (
-    <div
+    <motion.div
+      whileInView={{ opacity: [0, 1] }}
+      transition={{ duration: 0.5 }}
       className="Product__card"
       onClick={() => {
         navigate("/products/" + id);
@@ -72,7 +76,7 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

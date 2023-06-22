@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
-import HomePage from "./pages/HomePage";
+import HomePage, { loader as HomePageLoader } from "./pages/HomePage";
 import ProductsPage, { loader as ProductLoader } from "./pages/Products";
 import LoginPage, { action as LoginAction } from "./pages/AuthPages/LoginPage";
 import { action as LogoutAction } from "./pages/Logout";
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: HomePageLoader,
         element: <HomePage />,
       },
       {

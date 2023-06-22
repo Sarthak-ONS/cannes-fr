@@ -29,7 +29,6 @@ const CartProvider = (props) => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data.cart, "THis is the data from cartCtx set Cart");
           setcart({});
           setcart(data.cart);
           setTotalItems(data.cart.items.length);

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { motion } from "framer-motion";
 import "./CartPage.css";
 
 import { GrFormAdd } from "react-icons/gr";
@@ -44,13 +45,13 @@ const CartPage = () => {
 
   return (
     <div className="Cartpage-wrapper">
-      <div className="Cartpage">
-        <div className="Cartpage-heading__title">
-          {authCtx.name}'s <span>Cart</span>
-          <div className="Cartpage-heading__title-timeline">
-            Cart · Checkout · Payment
-          </div>
+      <div className="Cartpage-heading__title">
+        {authCtx.name}'s <span>Cart</span>
+        <div className="Cartpage-heading__title-timeline">
+          Cart · Checkout · Payment
         </div>
+      </div>
+      <div className="Cartpage">
         <div className="Cartpage-items">
           <ul>
             {cartCtx.items &&
@@ -78,15 +79,16 @@ const CartPage = () => {
         </div>
       </div>
       <div className="checkout-container">
-        <form class="discount-form">
-          <p>All prices includes GST</p>
+        <form className="discount-form">
+          <p style={{ fontWeight: "bold" }}>All prices includes GST</p>
+          <br />
           <div className="input-box">
-            <input type="text" value={"Total"} disabled />
+            <div>Total</div>
             <p>Rs. {totalPrice}</p>
           </div>
           <br />
           <div className="input-box">
-            <input type="text" value={"DeliveryCharge"} disabled />
+            <div>Delivery Charge</div>
             <p>Rs. 150</p>
           </div>
           <br />
@@ -106,7 +108,10 @@ const CartPage = () => {
             cartCtx.couponCode === "FLAT50" &&
             "Discount Applied"}
         </form>
-        <form action={`${process.env.REACT_APP_BACKEND_HOST}/cart/checkout`} method="GET">
+        <form
+          action={`${process.env.REACT_APP_BACKEND_HOST}/cart/checkout`}
+          method="GET"
+        >
           <button type="submit" className="checkout-btn">
             Rs. {cartCtx.totalPrice} Checkout
           </button>
@@ -129,7 +134,11 @@ const CartProductCard = ({
   }
 
   return (
-    <div className="CartProductCard">
+    <motion.div
+      whileInView={{ opacity: [0, 1] }}
+      transition={{ duration: 0.5 }}
+      className="CartProductCard"
+    >
       <div className="CartProductCard-image">
         <img src={image} alt={name}></img>
         <div className="CartProductCard-content">
@@ -143,7 +152,7 @@ const CartProductCard = ({
         <p>{quantity}</p>
         <BiMinus className="icon" size={20} onClick={onRemoveClick} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

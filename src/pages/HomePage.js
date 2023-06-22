@@ -6,6 +6,7 @@ import "./HomePage.css";
 import Brands from "../components/Brands/Brands";
 import FeatureCard from "../components/FeatureCard/FeatureCard";
 import ProductCard from "../components/ProductCard/ProductCard";
+import { useLoaderData } from "react-router-dom";
 
 const features = [
   {
@@ -34,60 +35,12 @@ const features = [
   },
 ];
 
-const featuredProducts = [
-  {
-    id: "kasnd98h3bri1qlax1",
-    title: "Autumn Dress",
-    isOnSale: true,
-    price: 58,
-    salePrice: 85,
-    url: "https://images.pexels.com/photos/17084696/pexels-photo-17084696/free-photo-of-woman-with-tulips-leaning-on-car-trunk.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    id: "kasnd98h3bridsad1221qlax1",
-    title: "Gray Shirt",
-    isOnSale: false,
-    price: 87,
-    url: "https://images.pexels.com/photos/6311590/pexels-photo-6311590.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-
-  {
-    id: "kasnd98h3bridsad1221qlax1",
-    title: "Gray Shirt",
-    isOnSale: false,
-    price: 87,
-    url: "https://images.pexels.com/photos/6311590/pexels-photo-6311590.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    id: "kasnd98h354jh3bri1qlax1",
-    title: "Leather Coat",
-    isOnSale: true,
-    price: 32,
-    salePrice: 40,
-    url: "https://images.pexels.com/photos/9821871/pexels-photo-9821871.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    id: "kasnd98h354jh3bdsadari1qlax1",
-    title: "Leather Coat",
-    isOnSale: true,
-    price: 32,
-    salePrice: 40,
-    url: "https://images.pexels.com/photos/9821871/pexels-photo-9821871.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    id: "kasnd98h3czx8976bri1qlax1",
-    title: "Autumn Dress",
-    isOnSale: true,
-    price: 58,
-    salePrice: 85,
-    url: "https://images.pexels.com/photos/17084696/pexels-photo-17084696/free-photo-of-woman-with-tulips-leaning-on-car-trunk.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-];
-
 const HomePage = () => {
+  const data = useLoaderData();
+
   return (
     <div className="HomePage">
-      <CarouselSlider />
+      <CarouselSlider imagesArray={data.carouselElements} />
       <Brands />
 
       {/* Static Content Starts */}
@@ -119,12 +72,13 @@ const HomePage = () => {
       <div className="featured__products">
         <div className="featured__products-heading">Featured Products</div>
         <ul>
-          {featuredProducts.map((item) => (
-            <li key={`${item.id}`}>
+          {data.products.map((item) => (
+            <li key={item._id}>
               <ProductCard
-                url={item.url}
+                id={item._id}
+                url={item.imageUrls[0].secure_url}
                 key={item.id}
-                title={item.title}
+                title={item.name}
                 price={item.price}
                 isOnSale={item.isOnSale}
                 discountedPrice={item.salePrice}
@@ -178,5 +132,18 @@ const HomePage = () => {
     </div>
   );
 };
+
+export async function loader() {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_HOST}/ui/trending`
+  );
+
+  if (!response.ok) {
+    const data = { message: "Could not connect." };
+    throw { isError: true, message: data.message, status: response.status };
+  }
+
+  return response;
+}
 
 export default HomePage;

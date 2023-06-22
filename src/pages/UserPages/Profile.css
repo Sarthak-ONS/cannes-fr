@@ -31,6 +31,7 @@
   justify-content: center;
 }
 .Address-form {
+  margin: 0.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +40,8 @@
 }
 
 .Address-form input {
-  min-width: 400px;
+  max-width: 400px;
+  min-width: 300px;
   outline: none;
   border: 1px solid rgb(144, 141, 141);
   margin: 0.5rem;
@@ -49,9 +51,15 @@
 }
 
 .Address-form button {
+  margin: 0.25rem;
   background-color: var(--primary-text-color);
   color: white;
   padding: 0.5rem 1rem;
-  min-width: 400px;
   border-radius: 5px;
+
+  max-width: 400px;
+  min-width: 300px;
+}
+
+@media (min-width: 650px) {
 }

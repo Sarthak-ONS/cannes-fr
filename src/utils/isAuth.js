@@ -18,10 +18,6 @@ export function getAuthToken() {
     .split("; ")
     .find((cookie) => cookie.startsWith(`token=`));
 
-  if (cookieValue) {
-    console.log(cookieValue, "This is the cookie value ");
-  }
-
   if (!token) {
     return null;
   }

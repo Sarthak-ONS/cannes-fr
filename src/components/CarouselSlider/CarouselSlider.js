@@ -6,31 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./CarouselSlider.css";
 import { useNavigate } from "react-router-dom";
 
-const carouselElements = [
-  {
-    id: "1",
-    title: "Level up your style with our summer collections",
-    linkto: "",
-    image:
-      "https://images.pexels.com/photos/8386645/pexels-photo-8386645.jpeg?auto=compress",
-  },
-  {
-    id: "1",
-    title: "Level up your style with our summer collections",
-    linkto: "",
-    image:
-      "https://images.pexels.com/photos/7679453/pexels-photo-7679453.jpeg?auto=compress",
-  },
-  {
-    id: "1",
-    title: "Level up your style with our summer collections",
-    linkto: "",
-    image:
-      "https://images.pexels.com/photos/5531746/pexels-photo-5531746.jpeg?auto=compress",
-  },
-];
-
-const CarouselSlider = (imagesArray = carouselElements) => {
+const CarouselSlider = ({ imagesArray }) => {
   const settings = {
     // dots: true,
     swipe: true,
@@ -46,7 +22,7 @@ const CarouselSlider = (imagesArray = carouselElements) => {
 
   return (
     <Slider className="c_slider" {...settings}>
-      {carouselElements.map((e) => (
+      {imagesArray.map((e) => (
         <CarouselCard key={e.id} title={e.title} image={e.image} />
       ))}
     </Slider>
