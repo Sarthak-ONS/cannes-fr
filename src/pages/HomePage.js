@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { CiBoxes, CiDeliveryTruck, CiHotdog, CiMedal } from "react-icons/ci";
 
@@ -38,20 +38,6 @@ const features = [
 
 const HomePage = () => {
   const data = useLoaderData();
-
-  // useEffect(() => {
-  //   const homeUICallFunction = async () => {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_BACKEND_HOST}/ui/trending`
-  //     );
-
-  //     if (!response.ok) {
-  //       const data = { message: "Could not connect." };
-  //       throw { isError: true, message: data.message, status: response.status };
-  //     }
-  //   };
-  //   homeUICallFunction();
-  // }, []);
 
   return (
     <div className="HomePage">

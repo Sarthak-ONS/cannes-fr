@@ -4,7 +4,9 @@ import { saveAs } from "file-saver";
 import "./OrdersPage.css";
 import { getAuthToken } from "../../utils/isAuth";
 import { useLoaderData } from "react-router-dom";
-
+import { AiOutlineClockCircle, AiFillCheckCircle } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
+import { BiPackage } from "react-icons/bi";
 const OrdersPage = () => {
   const data = useLoaderData();
   console.log(data.orders);
@@ -38,17 +40,22 @@ const OrdersPage = () => {
               <motion.div
                 whileInView={{ opacity: [0, 1] }}
                 transition={{ duration: 1 }}
-                className="OrderCard"
+                className="OrderCard "
                 key={item._id}
               >
-                <div className="OrderCard__orderId">
+                <div className={`OrderCard__orderId`}>
                   <h5>Order Id : </h5>
                   <div> {item._id}</div>
                 </div>
                 <div>{convertUtctoLocal(item.createdAt)}</div>
                 <div className="OrderCard__status">
                   <h5>Status : </h5>
-                  <div> {item.status}</div>
+                  <div>
+                    {item.status === "PENDING" && <AiOutlineClockCircle />}
+                    {item.status === "SHIPPED" && <BiPackage />}
+                    {item.status === "DELIVERED" && <BiPackage />}
+                    {item.status === "CANCELLED" && <MdCancel />} {item.status}
+                  </div>
                 </div>
                 <hr></hr>
                 <div className="OrderCard-productsList">

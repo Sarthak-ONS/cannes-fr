@@ -3,6 +3,7 @@
   padding-left: 10px;
   padding-right: 10px;
   color: var(--primary-text-color);
+  background-color: transparent;
 }
 
 .OrdersPage ul {
@@ -15,7 +16,7 @@
 
 .OrderCard {
   margin: 1rem 0;
-  background-color: aliceblue;
+  background-color: var(--status-SHIPPING);
   border: 3px solid var(--primary-text-color);
   padding: 0.5rem 0.75rem;
   border-radius: 8px;

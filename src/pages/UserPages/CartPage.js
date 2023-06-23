@@ -137,7 +137,7 @@ const CartPage = () => {
             type="submit"
             className="checkout-btn"
           >
-            {isSubmitting ? <center><Loader /></center> : <>Rs. {cartCtx.totalPrice} Checkout</>}
+            {isSubmitting ? <Loader /> : <>Rs. {cartCtx.totalPrice} Checkout</>}
           </button>
         </Form>
       </motion.div>

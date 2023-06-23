@@ -23,6 +23,8 @@ import ProfilePage, {
 import OrdersPage, {
   loader as OrdersLoader,
 } from "./pages/UserPages/OrdersPage";
+import { useEffect, useState } from "react";
+import SplashScreen from "./pages/SplashScreen";
 
 const router = createBrowserRouter([
   {
@@ -82,12 +84,33 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const [showLoading, setShowLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowLoading(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
-    <AuthProvider>
-      <CartProvider>
-        <RouterProvider router={router} />
-      </CartProvider>
-    </AuthProvider>
+    <>
+      {showLoading && (
+        <>
+          <SplashScreen />
+        </>
+      )}
+      {!showLoading && (
+        <AuthProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
+        </AuthProvider>
+      )}
+    </>
   );
 }
 

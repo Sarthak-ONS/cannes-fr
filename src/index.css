@@ -6,6 +6,11 @@
 :root {
   --primary-background-color: #1d242d;
   --primary-text-color: #1d242d;
+
+  --status-PENDING: #f2f2f2;
+  --status-SHIPPING: #d6eefb;
+  --status-DELIVERED: #d4f9d0;
+  --status-CANCELLED: #fcd9d9;
 }
 
 * {

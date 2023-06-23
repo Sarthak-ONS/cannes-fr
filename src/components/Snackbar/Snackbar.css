@@ -1,6 +1,7 @@
 .snackbar {
   width: 100%;
-
+  position: fixed;
+  bottom: 0;
   background-color: var(--primary-background-color);
   color: white;
   text-align: center;
@@ -9,8 +10,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  position: relative;
 }
 
 .snackbar-icon {

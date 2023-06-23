@@ -13,6 +13,7 @@ const useHttp = () => {
         method: requestConfig.method ? requestConfig.method : "GET",
         headers: requestConfig.headers ? requestConfig.headers : {},
         body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+        credentials: "include",
         mode: "no-cors",
       });
 

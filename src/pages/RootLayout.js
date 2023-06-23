@@ -1,6 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
+
 import { Outlet, useLoaderData, useSubmit } from "react-router-dom";
 import Navbar from "../components/NavBar/Navbar";
+import CustomSnackbar from "../components/Snackbar/Snackbar";
 
 import { getTokenDuration } from "../utils/isAuth";
 import AuthContext from "../store/auth-context";
@@ -9,6 +11,7 @@ import CartContext from "../store/cart-context";
 const RootLayout = () => {
   const token = useLoaderData();
   const submit = useSubmit();
+  const [hide, setHide] = useState(true);
 
   const authCtx = useContext(AuthContext);
   const cartCtx = useContext(CartContext);
