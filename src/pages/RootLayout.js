@@ -56,8 +56,6 @@ const RootLayout = () => {
         console.log(error, "This is the error from catch block");
       }
     };
-
-    fetchUserProfile();
   }, [token]);
 
   useEffect(() => {

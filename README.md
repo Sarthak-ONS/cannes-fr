@@ -1,71 +1,76 @@
-# Getting Started with Create React App
+# Cannes - E-commerce App (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Cannes Logo](./public/logo.png)
 
-## Available Scripts
+Welcome to the frontend repository for Cannes, an e-commerce application built as part of our full stack project. This repository contains the code for the frontend user interface, providing a delightful shopping experience for our customers.
 
-In the project directory, you can run:
+## Project Overview
 
-### `npm start`
+Cannes is a feature-rich e-commerce app designed to cater to the needs of modern shoppers. With a sleek and intuitive interface, our application offers a wide range of products from various categories, allowing users to browse, search, and purchase items with ease. The app also incorporates essential features like user authentication, cart management, and order tracking to enhance the overall shopping journey.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The frontend repository works in tandem with the [Cannes Backend Repository](https://github.com/Sarthak-ONS/cannes-bk.git), which houses the server-side code responsible for handling data, integrating with external APIs, and managing database operations.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Project Explanatory Video
+To get a better understanding of the Cannes e-commerce app and its features, please watch our Project Explanatory Video.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[![Project Explanatory Video](https://img.youtube.com/vi/RSL-HrNRyNQ/0.jpg)](https://www.youtube.com/watch?v=RSL-HrNRyNQ)
 
-### `npm run build`
+## Key Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Product Catalog**: Explore a vast collection of products from different categories, complete with detailed descriptions, images, and pricing information.
+- **User Authentication**: Create an account, log in securely, and enjoy personalized shopping experiences with features like saved addresses, order history, and recommendations.
+- **Search and Filtering**: Effortlessly find desired products using search functionality and apply filters to narrow down results based on attributes like price, brand, ratings, and more.
+- **Shopping Cart**: Add items to the cart, modify quantities, and proceed to checkout with a seamless and intuitive cart management system.
+- **Payment Integration**: Experience secure and smooth payment processing, leveraging popular payment gateways to complete transactions.
+- **Order Tracking**: Track the status of placed orders, receive notifications, and stay informed about the progress of your purchases.
+- **Responsive Design**: Enjoy a consistent and visually appealing shopping experience across various devices, including desktop, tablet, and mobile.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Programming Languages**: HTML, CSS, JavaScript
+- **Frontend Framework**: React.Js
+- **State Management**: React Context API, react-router-dom
+- **APIs**: Our frontend communicates with the [Cannes Backend API](https://github.com/Sarthak-ONS/cannes-bk.git) to fetch product data, process user authentication, and manage orders.
 
-### `npm run eject`
+## Installation and Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To set up the Cannes frontend app locally, follow the steps below:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the [Cannes Backend Repository](https://github.com/Sarthak-ONS/cannes-bk.git) and follow the instructions provided in its README to set up the backend server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Clone this frontend repository to your local machine:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   git clone https://github.com/YourUsername/cannes-frontend.git
+   ```
 
-## Learn More
+3. Navigate to the project directory:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   cd cannes-frontend
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Install the required dependencies using a package manager like npm or yarn:
 
-### Code Splitting
+   ```bash
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. Configure the backend API URL in the appropriate configuration file (`src/config.js` or similar) to ensure proper communication with the backend server.
 
-### Analyzing the Bundle Size
+6. Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   npm start
+   ```
 
-### Making a Progressive Web App
+   This command will launch the app in your default browser. If it doesn't open automatically, visit [http://localhost:3000](http://localhost:3000) to access the Cannes app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+7. You're all set! Explore the Cannes app on your local machine and begin your shopping journey.
 
-### Advanced Configuration
+## Feedback and Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you have any questions, suggestions, or need support regarding the Cannes app or the full stack project, please reach out at sarthak@sarthakag.dev
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# cannes-fr" 
+Thank you for your interest in Cannes! Happy shopping! 🛍️

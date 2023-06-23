@@ -173,18 +173,23 @@ const ProductDescriptionPage = () => {
         )}
         <ul>
           {data.product.reviews &&
-            data.product.reviews.map((item) => (
-              <motion.li
-                whileInView={{ opacity: [0, 1], x: [-50, 0] }}
-                transition={{ duration: 0.5 }}
-                className="ProductReview-card"
-              >
-                <p className="ProductReview-card__username">
-                  {item.userId.name}
-                </p>
-                <p className="ProductReview-card__text">{item.text}</p>
-              </motion.li>
-            ))}
+            data.product.reviews.map((item) => {
+
+              console.log(data.product.reviews);
+
+              return (
+                <motion.li
+                  whileInView={{ opacity: [0, 1], x: [-50, 0] }}
+                  transition={{ duration: 0.5 }}
+                  className="ProductReview-card"
+                >
+                  <p className="ProductReview-card__username">
+                    {item.userId.name}
+                  </p>
+                  <p className="ProductReview-card__text">{item.text}</p>
+                </motion.li>
+              );
+            })}
         </ul>
         <ul>
           {!data.product.reviews ||
