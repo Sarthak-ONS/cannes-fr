@@ -109,6 +109,7 @@ const CartProvider = (props) => {
 
   const checkoutHandler = async () => {
     console.log("CHECKOUTING THE CART");
+    const token = getAuthToken();
     let url = `${process.env.REACT_APP_BACKEND_HOST}/cart/checkout`;
     try {
       const response = await fetch(url, {
@@ -116,16 +117,15 @@ const CartProvider = (props) => {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + getAuthToken(),
+          Authorization: "Bearer " + token,
         },
       });
 
-      console.log(response);
-
+      const responseData = await response.json();
       if (response.ok) {
-        const data = await response.json();
-        redirect("/orders");
+        return responseData;
       } else {
+        return responseData;
       }
     } catch (error) {
       console.log(error, "This is the error from catch block");

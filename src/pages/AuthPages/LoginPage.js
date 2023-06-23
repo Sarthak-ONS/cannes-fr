@@ -6,6 +6,7 @@ import {
   useNavigate,
   useActionData,
   useNavigation,
+  redirect,
 } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
@@ -13,7 +14,6 @@ import Loader from "../../components/Loader/Loader";
 import AuthContext from "../../store/auth-context";
 
 const LoginPage = () => {
- 
   const navigate = useNavigate();
 
   let errorMessage = "Invalid email";
@@ -125,5 +125,5 @@ export async function action({ request }) {
   expirationDate.setHours(expirationDate.getHours() + 1);
   localStorage.setItem("expiration", expirationDate.toISOString());
 
-  return { ...resData };
+  return redirect("/");
 }

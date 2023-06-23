@@ -6,13 +6,18 @@ import { GrFormAdd } from "react-icons/gr";
 import { BiMinus } from "react-icons/bi";
 
 import EmptyBagImage from "../../Assets/empty-bag.png";
+import Loader from "../../components/Loader/Loader";
 
 import AuthContext from "../../store/auth-context";
 import CartContext from "../../store/cart-context";
+import { Form } from "react-router-dom";
 
 const CartPage = () => {
   const authCtx = useContext(AuthContext);
   const cartCtx = useContext(CartContext);
+
+  const [error, setError] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [couponCode, setCouponCode] = useState(cartCtx.couponCode);
 
@@ -38,8 +43,22 @@ const CartPage = () => {
     cartCtx.applyDiscountHandler(couponCode);
   };
 
-  const checkoutHandler = () => {
-    cartCtx.checkoutHandler();
+  const checkoutHandler = async (e) => {
+    setIsSubmitting(true);
+    e.preventDefault();
+    const response = await cartCtx.checkoutHandler();
+    console.log(response);
+    if (response && response.status && response.status === "ERROR") {
+      setError(response.message);
+      setIsSubmitting(false);
+    }
+
+    if (response && response.status && response.status === "REDIRECT") {
+      window.location.replace(response.url);
+    }
+
+    console.log("response", response);
+    setIsSubmitting(false);
   };
 
   return (
@@ -84,6 +103,7 @@ const CartPage = () => {
       >
         <form className="discount-form">
           <p style={{ fontWeight: "bold" }}>All prices includes GST</p>
+          {error && <div className="error-msg">{error}</div>}
           <br />
           <div className="input-box">
             <div>Total</div>
@@ -111,14 +131,15 @@ const CartPage = () => {
             cartCtx.couponCode === "FLAT50" &&
             "Discount Applied"}
         </form>
-        <form
-          action={`${process.env.REACT_APP_BACKEND_HOST}/cart/checkout`}
-          method="GET"
-        >
-          <button type="submit" className="checkout-btn">
-            Rs. {cartCtx.totalPrice} Checkout
+        <Form onSubmit={checkoutHandler}>
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className="checkout-btn"
+          >
+            {isSubmitting ? <center><Loader /></center> : <>Rs. {cartCtx.totalPrice} Checkout</>}
           </button>
-        </form>
+        </Form>
       </motion.div>
     </div>
   );
